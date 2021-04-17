@@ -33,5 +33,13 @@ class DetailProductActivity : AppCompatActivity() {
         btn_left_detail.setOnClickListener {
             onBackPressed()
         }
+
+        btn_detail_edit.setOnClickListener {
+
+        }
+
+        btn_detail_sell.setOnClickListener {
+
+        }
     }
 }

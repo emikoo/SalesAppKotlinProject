@@ -10,13 +10,18 @@ import android.view.ViewGroup
 import android.widget.Button
 import android.widget.EditText
 import android.widget.TextView
+import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.example.salesappkotlinproject.R
+import com.example.salesappkotlinproject.helper.ItemSimpleTouch
 import com.example.salesappkotlinproject.helper.isEmptyInputData
 import com.example.salesappkotlinproject.model.Product
 import com.example.salesappkotlinproject.ui.detail_product.DetailProductActivity
 import com.example.salesappkotlinproject.ui.product_list.adapter.ClickListener
 import com.example.salesappkotlinproject.ui.product_list.adapter.ProductListAdapter
+import com.example.salesappkotlinproject.ui.sell_product.SellProductActivity
+import kotlinx.android.synthetic.main.alert_sell.*
 import kotlinx.android.synthetic.main.fragment_product_list.*
 
 class ProductListFragment : Fragment(), ClickListener {
@@ -109,10 +114,51 @@ class ProductListFragment : Fragment(), ClickListener {
         dialog.dismiss()
     }
 
+    private fun deleteSwipeAction() {
+        val swipeHandler = object : ItemSimpleTouch(requireContext()) {
+            override fun onSwiped(viewHolder: RecyclerView.ViewHolder, direction: Int) {
+                val position = viewHolder.adapterPosition
+//                val item = viewModel.products?.get(position)
+                adapter.deleteItem(position)
+
+//                showActionSnackbar(rv_product_list, "Вы удалили товар", "Востановить",
+//                    { restoreDeletedItem(item, position)}, requireContext())
+            }
+        }
+        val itemTouchHelper = ItemTouchHelper(swipeHandler)
+        itemTouchHelper.attachToRecyclerView(rv_product_list)
+    }
+
+    private fun restoreDeletedItem(item: Product?, position: Int) {
+        adapter.restoreItem(item, position)
+    }
+
     override fun onItemClick(item: Product) {
         val intent = Intent(requireContext(), DetailProductActivity::class.java)
         intent.putExtra(product_detail, item)
         startActivity(intent)
+    }
+
+    override fun onLongItemClick(item: Product) {
+        showSellingAlertDialog(item)
+    }
+
+    private fun showSellingAlertDialog(item: Product) {
+        val alert = AlertDialog.Builder(requireContext())
+        val view: View = layoutInflater.inflate(R.layout.alert_sell, null)
+        alert.setView(view)
+            .setCustomTitle(title_dialog)
+            .setCancelable(false)
+        alert.setPositiveButton("ДА"){ dialog, which ->
+            val intent = Intent(requireContext(), SellProductActivity::class.java)
+            intent.putExtra(product_detail, item)
+            startActivity(intent)
+            dialog.dismiss()
+        }
+        alert.setNegativeButton("НЕТ"){ dialog, which ->
+            dialog.dismiss()
+        }
+        alert.show()
     }
 
     companion object {

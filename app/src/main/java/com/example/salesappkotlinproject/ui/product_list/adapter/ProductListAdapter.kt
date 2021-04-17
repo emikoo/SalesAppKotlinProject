@@ -42,6 +42,10 @@ class ProductListAdapter(private val listener: ClickListener): RecyclerView.Adap
         holder.itemView.setOnClickListener {
             listener.onItemClick(item)
         }
+        holder.itemView.setOnLongClickListener {
+            listener.onLongItemClick(item)
+            true
+        }
     }
 
     fun addItems(item: MutableList<Product>) {
@@ -53,6 +57,20 @@ class ProductListAdapter(private val listener: ClickListener): RecyclerView.Adap
         items.add(item)
         notifyDataSetChanged()
 //        notifyItemRangeInserted(items.lastIndex, items.count()-1)
+    }
+
+    fun deleteItem(position: Int) {
+        items.removeAt(position)
+        notifyItemRemoved(position)
+        notifyItemRangeChanged(position, itemCount)
+    }
+
+    fun restoreItem(item: Product?, position: Int){
+        item?.let {
+            items.add(position, it)
+            notifyItemRangeChanged(position, itemCount)
+            notifyDataSetChanged()
+        }
     }
 
     companion object {
@@ -74,4 +92,5 @@ class EmptyProductListViewHolder(itemView: View): BaseProductListViewHolder(item
 
 interface ClickListener {
     fun onItemClick(item: Product)
+    fun onLongItemClick(item: Product)
 }
