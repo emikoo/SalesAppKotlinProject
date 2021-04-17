@@ -23,7 +23,9 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         app:layout_constraintBottom_toTopOf="@id/fab_add"
-        app:layout_constraintTop_toBottomOf="@id/search_field" />
+        app:layout_constraintTop_toBottomOf="@id/search_field"
+        android:layout_marginTop="@dimen/margin_recycler"
+        android:layout_marginBottom="@dimen/margin_recycler"/>
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/fab_add"

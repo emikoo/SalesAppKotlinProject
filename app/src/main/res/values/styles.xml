@@ -7,12 +7,36 @@
         <item name="colorAccent">@color/color_bottom_nav</item>
     </style>
 
-    <style name="title">
+    <style name="title_style">
         <item name="android:layout_marginStart">@dimen/margin_title</item>
         <item name="android:layout_marginTop">@dimen/margin_title</item>
         <item name="android:fontFamily">@font/opensans_bold</item>
         <item name="android:textColor">@color/color_bold_black_title</item>
         <item name="android:textSize">@dimen/title_size</item>
+    </style>
+
+    <style name="subtitle_semibold_style">
+        <item name="android:textSize">@dimen/subtitle_size</item>
+        <item name="android:fontFamily">@font/opensans_semibold</item>
+        <item name="android:textColor">@color/color_black_title</item>
+    </style>
+
+    <style name="subtitle_regular_style">
+        <item name="android:textSize">@dimen/subtitle_size</item>
+        <item name="android:fontFamily">@font/opensans_regular</item>
+        <item name="android:textColor">@color/color_black_title</item>
+    </style>
+
+    <style name="detail_title_style">
+        <item name="android:text">@string/product_detail</item>
+        <item name="android:fontFamily">@font/opensans_regular</item>
+        <item name="android:textSize">@dimen/detail_text_size</item>
+    </style>
+
+    <style name="mini_text_style">
+        <item name="android:textSize">@dimen/mini_text_size</item>
+        <item name="android:fontFamily">@font/opensans_regular</item>
+        <item name="android:textColor">@color/color_black_title</item>
     </style>
 
 </resources>
