@@ -2,4 +2,7 @@
     <string name="app_name">SalesAppKotlinProject</string>
     <string name="product_list">Список товаров</string>
     <string name="sales_history">История продаж</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="my_products">Мои товары</string>
 </resources>
