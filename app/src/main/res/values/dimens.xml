@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="radius_top_bottom_nav">20dp</dimen>
+    <dimen name="height_bottom_nav">61dp</dimen>
+    <dimen name="icon_size_bottom_nav">33dp</dimen>
+    <dimen name="margin_title">34dp</dimen>
+    <dimen name="title_size">24sp</dimen>
+
+
+</resources>
