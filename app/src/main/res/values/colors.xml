@@ -5,5 +5,11 @@
     <color name="colorAccent">#03DAC5</color>
 
     <color name="color_bottom_nav">#3366FF</color>
+
     <color name="color_bold_black_title">#151A30</color>
+
+    <color name="color_search_stroke">#E4E9F2</color>
+    <color name="color_search_fill">#F7F9FC</color>
+
+    <color name="color_white">#FFFFFF</color>
 </resources>
