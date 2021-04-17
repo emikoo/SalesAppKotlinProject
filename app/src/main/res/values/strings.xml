@@ -4,8 +4,18 @@
     <string name="sales_history">История продаж</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+
     <string name="my_products">Мои товары</string>
     <string name="search">Поиск</string>
     <string name="product_detail">Детали товара</string>
     <string name="in_stock">В наличии:</string>
+
+    <string name="add_product">Добавьте товар</string>
+    <string name="add">Добавить</string>
+    <string name="cancel">Отмена</string>
+
+    <string name="add_name">Введите название товара</string>
+    <string name="add_price">Введите продажную цену товара</string>
+    <string name="add_cost_price">Введите себестоимость товара</string>
+    <string name="add_incoming_number">Введите общее количество товара</string>
 </resources>

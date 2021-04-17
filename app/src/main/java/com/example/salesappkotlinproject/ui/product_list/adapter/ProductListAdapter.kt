@@ -9,7 +9,7 @@ import com.example.salesappkotlinproject.helper.toSht
 import com.example.salesappkotlinproject.model.Product
 import kotlinx.android.synthetic.main.item_product_list.view.*
 
-class ProductListAdapter: RecyclerView.Adapter<BaseProductListViewHolder>() {
+class ProductListAdapter(private val listener: ClickListener): RecyclerView.Adapter<BaseProductListViewHolder>() {
 
     private var items = mutableListOf<Product>()
 
@@ -39,11 +39,20 @@ class ProductListAdapter: RecyclerView.Adapter<BaseProductListViewHolder>() {
     private fun setupItemListViewHolder(holder: ProductListViewHolder, position: Int) {
         val item = items[position]
         holder.bind(item)
+        holder.itemView.setOnClickListener {
+            listener.onItemClick(item)
+        }
     }
 
     fun addItems(item: MutableList<Product>) {
         items.addAll(item)
         notifyDataSetChanged()
+    }
+
+    fun addItem(item: Product) {
+        items.add(item)
+        notifyDataSetChanged()
+//        notifyItemRangeInserted(items.lastIndex, items.count()-1)
     }
 
     companion object {
@@ -57,9 +66,12 @@ open class BaseProductListViewHolder(itemView: View): RecyclerView.ViewHolder(it
 class ProductListViewHolder(itemView: View): BaseProductListViewHolder(itemView){
     fun bind(item: Product) {
         itemView.item_product_name.text = item.name
-        itemView.item_product_available_number.text = item.availableNumber.toString().toSht()
+        itemView.item_product_available_number.text = item.available_count.toString().toSht()
     }
 }
 
-class EmptyProductListViewHolder(itemView: View): BaseProductListViewHolder(itemView){
+class EmptyProductListViewHolder(itemView: View): BaseProductListViewHolder(itemView){}
+
+interface ClickListener {
+    fun onItemClick(item: Product)
 }

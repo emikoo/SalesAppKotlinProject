@@ -7,12 +7,31 @@
         <item name="colorAccent">@color/color_bottom_nav</item>
     </style>
 
+    <style name="ProductDialogStyle" parent="Theme.AppCompat.Light.Dialog.Alert">
+    </style>
+
+    <style name="positiveButton">
+        <item name="android:background">@null</item>
+        <item name="android:textColor">@color/color_main_blue</item>
+        <item name="fontFamily">@font/opensans_bold</item>
+    </style>
+
+    <style name="negativeButton">
+        <item name="android:background">@null</item>
+        <item name="android:textColor">@color/color_gray</item>
+        <item name="fontFamily">@font/opensans_bold</item>
+    </style>
+
     <style name="title_style">
-        <item name="android:layout_marginStart">@dimen/margin_title</item>
-        <item name="android:layout_marginTop">@dimen/margin_title</item>
         <item name="android:fontFamily">@font/opensans_bold</item>
         <item name="android:textColor">@color/color_bold_black_title</item>
         <item name="android:textSize">@dimen/title_size</item>
+    </style>
+
+    <style name="subtitle_bold_style">
+        <item name="android:textSize">@dimen/subtitle_size</item>
+        <item name="android:fontFamily">@font/opensans_bold</item>
+        <item name="android:textColor">@color/color_black_title</item>
     </style>
 
     <style name="subtitle_semibold_style">
@@ -39,4 +58,5 @@
         <item name="android:textColor">@color/color_black_title</item>
     </style>
 
+    <color name="color_gray">#8F9BB3</color>
 </resources>
