@@ -14,8 +14,22 @@
     <string name="add">Добавить</string>
     <string name="cancel">Отмена</string>
 
-    <string name="add_name">Введите название товара</string>
-    <string name="add_price">Введите продажную цену товара</string>
-    <string name="add_cost_price">Введите себестоимость товара</string>
-    <string name="add_incoming_number">Введите общее количество товара</string>
+    <string name="add_name">Введите название </string>
+    <string name="add_price">Введите продажную цену </string>
+    <string name="add_cost_price">Введите себестоимость </string>
+    <string name="add_incoming_number">Введите количество</string>
+    <string name="sell_product">Продажа товара</string>
+    <string name="sold_date">Дата продажи</string>
+    <string name="close">Закрыть</string>
+    <string name="price">ЦЕНА</string>
+    <string name="count">КОЛИЧЕСТВО</string>
+    <string name="som">сом</string>
+    <string name="save">Сохранить</string>
+    <string name="sht">шт.</string>
+    <string name="sell">Продать</string>
+    <string name="edit">Редактировать</string>
+    <string name="cost_price">Себестоимость:</string>
+    <string name="price_dot">Цена:</string>
+    <string name="sell_dot">Продано:</string>
+    <string name="incame">Пришло:</string>
 </resources>

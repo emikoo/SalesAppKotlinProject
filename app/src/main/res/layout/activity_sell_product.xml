@@ -6,4 +6,162 @@
     android:layout_height="match_parent"
     tools:context=".ui.sell_product.SellProductActivity">
 
+    <TextView
+        style="@style/title_style"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/margin_title"
+        android:layout_marginTop="@dimen/margin_title"
+        android:text="@string/sell_product"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageButton
+        android:contentDescription="@string/close"
+        android:id="@+id/btn_close"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_marginTop="@dimen/margin_title"
+        android:layout_marginEnd="@dimen/margin_title"
+        android:background="@drawable/ic_close"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/sell_item_name"
+        style="@style/subtitle_bold_style"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/margin_title"
+        android:layout_marginTop="24dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/btn_close"
+        tools:text="T-Shirt Zara" />
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/sell_date_container"
+        android:layout_width="0dp"
+        android:layout_height="40dp"
+        android:layout_marginTop="24dp"
+        android:layout_marginEnd="47dp"
+        android:background="@drawable/custom_date"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@id/sell_item_name"
+        app:layout_constraintTop_toBottomOf="@id/sell_item_name">
+
+        <TextView
+            android:id="@+id/tv_date"
+            style="@style/subtitle_semibold_style"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_marginStart="16dp"
+            android:gravity="center"
+            android:textSize="@dimen/date_size"
+            app:layout_constraintStart_toStartOf="parent"
+            tools:text="13 апреля, 2021" />
+
+        <ImageButton
+            android:contentDescription="@string/sold_date"
+            android:id="@+id/btn_calendar"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:layout_marginEnd="16dp"
+            android:background="@drawable/ic_calendar"
+            android:padding="10dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <TextView
+        android:id="@+id/sell_price_title"
+        style="@style/subtitle_gray_style"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:text="@string/price"
+        app:layout_constraintStart_toStartOf="@id/sell_date_container"
+        app:layout_constraintTop_toBottomOf="@id/sell_date_container" />
+
+    <TextView
+        android:id="@+id/sell_number_title"
+        style="@style/subtitle_gray_style"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/count"
+        app:layout_constraintTop_toBottomOf="@id/et_sold_price"
+        android:layout_marginTop="32dp"
+        app:layout_constraintStart_toStartOf="@id/sell_date_container"/>
+
+    <EditText
+        android:id="@+id/et_sold_price"
+        style="@style/sell_hint_text_style"
+        android:layout_width="70dp"
+        android:layout_height="30dp"
+        android:layout_marginTop="8dp"
+        android:background="@drawable/custom_sell_edit_text"
+        app:layout_constraintStart_toStartOf="@id/sell_date_container"
+        app:layout_constraintTop_toBottomOf="@id/sell_price_title" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/som"
+        app:layout_constraintStart_toEndOf="@id/et_sold_price"
+        app:layout_constraintTop_toTopOf="@id/et_sold_price"
+        app:layout_constraintBottom_toBottomOf="@id/et_sold_price"
+        style="@style/subtitle_gray_style"
+        android:layout_marginStart="4dp"/>
+
+    <EditText
+        android:id="@+id/et_sold_number"
+        style="@style/sell_hint_text_style"
+        android:layout_width="0dp"
+        android:layout_height="30dp"
+        android:layout_marginTop="8dp"
+        android:background="@drawable/custom_sell_edit_text"
+        app:layout_constraintStart_toStartOf="@id/et_sold_price"
+        app:layout_constraintEnd_toEndOf="@id/et_sold_price"
+        app:layout_constraintTop_toBottomOf="@id/sell_number_title" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/sht"
+        app:layout_constraintStart_toEndOf="@id/et_sold_number"
+        app:layout_constraintTop_toTopOf="@id/et_sold_number"
+        app:layout_constraintBottom_toBottomOf="@id/et_sold_number"
+        style="@style/subtitle_gray_style"
+        android:layout_marginStart="4dp"/>
+
+    <Button
+        android:id="@+id/sell_negative"
+        style="@style/negativeButton"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="64dp"
+        android:layout_marginEnd="@dimen/margin_16_dp"
+        android:layout_marginStart="@dimen/margin_16_dp"
+        android:layout_marginBottom="64dp"
+        android:background="@drawable/custom_btn_cancel"
+        app:layout_constraintEnd_toStartOf="@id/sell_positive"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:text="@string/cancel" />
+
+    <Button
+        android:id="@+id/sell_positive"
+        style="@style/positiveButton"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/margin_16_dp"
+        android:layout_marginEnd="@dimen/margin_16_dp"
+        android:layout_marginBottom="64dp"
+        android:background="@drawable/custom_btn_save"
+        android:textColor="@android:color/white"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/sell_negative"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:text="@string/sell" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

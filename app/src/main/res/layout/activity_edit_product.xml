@@ -1,0 +1,183 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.detail_product.DetailProductActivity">
+
+    <ImageButton
+        android:id="@+id/btn_edit_close"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="24dp"
+        android:background="@drawable/ic_close"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <EditText
+        android:id="@+id/edit_item_name"
+        style="@style/title_style"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:textColorHint="@color/color_black_title"
+        app:layout_constraintBottom_toBottomOf="@id/btn_edit_close"
+        app:layout_constraintStart_toEndOf="@id/btn_edit_close"
+        app:layout_constraintTop_toTopOf="@id/btn_edit_close"
+        tools:text="T-Shirt Zara" />
+
+    <View
+        android:id="@+id/gray_line"
+        android:layout_width="match_parent"
+        android:layout_height="4dp"
+        android:layout_marginTop="16dp"
+        android:background="@color/color_gray"
+        app:layout_constraintTop_toBottomOf="@id/edit_item_name" />
+
+    <TextView
+        style="@style/subtitle_bold_style"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="24dp"
+        android:text="@string/in_stock"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/gray_line" />
+
+    <TextView
+        style="@style/subtitle_regular_style"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:text="@string/incame"
+        app:layout_constraintBottom_toBottomOf="@id/edit_count"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@id/edit_count" />
+
+    <TextView
+        style="@style/subtitle_regular_style"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:text="@string/sell_dot"
+        app:layout_constraintBottom_toBottomOf="@id/edit_sold_count"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@id/edit_sold_count" />
+
+    <EditText
+        android:id="@+id/edit_available_count"
+        style="@style/subtitle_bold_style"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="24dp"
+        android:importantForAutofill="no"
+        android:inputType="number"
+        android:textColorHint="@color/color_black_title"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/gray_line"
+        tools:text="12 шт." />
+
+    <EditText
+        android:id="@+id/edit_count"
+        style="@style/subtitle_regular_style"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="24dp"
+        android:inputType="number"
+        android:textColorHint="@color/color_black_title"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/edit_available_count"
+        tools:text="20 шт." />
+
+    <EditText
+        android:id="@+id/edit_sold_count"
+        style="@style/subtitle_regular_style"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="24dp"
+        android:inputType="number"
+        android:textColorHint="@color/color_black_title"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/edit_count"
+        tools:text="8 шт." />
+
+
+    <TextView
+        style="@style/subtitle_bold_style"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:text="@string/price_dot"
+        app:layout_constraintBottom_toBottomOf="@id/edit_price"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@id/edit_price" />
+
+    <TextView
+        style="@style/subtitle_regular_style"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:text="@string/cost_price"
+        app:layout_constraintBottom_toBottomOf="@id/edit_cost_price"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@id/edit_cost_price" />
+
+    <EditText
+        android:id="@+id/edit_price"
+        style="@style/subtitle_bold_style"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:layout_marginEnd="24dp"
+        android:inputType="number"
+        android:textColorHint="@color/color_black_title"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/edit_sold_count"
+        tools:text="200 сом" />
+
+    <EditText
+        android:id="@+id/edit_cost_price"
+        style="@style/subtitle_regular_style"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="24dp"
+        android:inputType="number"
+        android:textColorHint="@color/color_black_title"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/edit_price"
+        tools:text="180 сом" />
+
+
+    <Button
+        android:id="@+id/btn_edit_cancel"
+        style="@style/positiveButton"
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="72dp"
+        android:background="@drawable/custom_btn_cancel"
+        android:text="@string/cancel"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/btn_edit_save"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <Button
+        android:id="@+id/btn_edit_save"
+        style="@style/positiveButton"
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:background="@drawable/custom_btn_save"
+        android:text="@string/save"
+        android:textColor="@color/color_white"
+        app:layout_constraintBottom_toBottomOf="@id/btn_edit_cancel"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/btn_edit_cancel"
+        app:layout_constraintTop_toTopOf="@id/btn_edit_cancel" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

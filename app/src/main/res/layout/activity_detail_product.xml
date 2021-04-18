@@ -20,6 +20,7 @@
         android:id="@+id/detail_item_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:enabled="true"
         app:layout_constraintStart_toEndOf="@id/btn_left_detail"
         app:layout_constraintTop_toTopOf="@id/btn_left_detail"
         app:layout_constraintBottom_toBottomOf="@id/btn_left_detail"
@@ -53,7 +54,7 @@
         app:layout_constraintStart_toStartOf="parent"
         android:layout_marginStart="16dp"
         style="@style/subtitle_regular_style"
-        android:text="Пришло:"/>
+        android:text="@string/incame"/>
 
     <TextView
         android:layout_width="wrap_content"
@@ -63,7 +64,7 @@
         app:layout_constraintStart_toStartOf="parent"
         android:layout_marginStart="16dp"
         style="@style/subtitle_regular_style"
-        android:text="Продано:"/>
+        android:text="@string/sell_dot"/>
 
     <TextView
         android:id="@+id/availableCount"
@@ -103,10 +104,11 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:layout_constraintTop_toTopOf="@id/price"
-        app:layout_constraintBottom_toBottomOf="@id/price"        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintBottom_toBottomOf="@id/price"
+        app:layout_constraintStart_toStartOf="parent"
         android:layout_marginStart="16dp"
         style="@style/subtitle_bold_style"
-        android:text="Цена:"/>
+        android:text="@string/price_dot"/>
 
     <TextView
         android:layout_width="wrap_content"
@@ -116,7 +118,7 @@
         app:layout_constraintStart_toStartOf="parent"
         android:layout_marginStart="16dp"
         style="@style/subtitle_regular_style"
-        android:text="Себестоимость:"/>
+        android:text="@string/cost_price"/>
 
     <TextView
         android:id="@+id/price"
@@ -149,7 +151,7 @@
         android:layout_marginBottom="72dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toStartOf="@id/btn_detail_sell"
-        android:text="Редактировать"
+        android:text="@string/edit"
         style="@style/positiveButton"
         android:background="@drawable/custom_btn_detail"/>
 
@@ -161,7 +163,7 @@
         app:layout_constraintBottom_toBottomOf="@id/btn_detail_edit"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@id/btn_detail_edit"
-        android:text="Продать"
+        android:text="@string/sell"
         style="@style/positiveButton"
         android:background="@drawable/custom_btn_detail"/>
 

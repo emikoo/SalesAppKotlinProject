@@ -16,6 +16,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.salesappkotlinproject.R
 import com.example.salesappkotlinproject.helper.ItemSimpleTouch
 import com.example.salesappkotlinproject.helper.isEmptyInputData
+import com.example.salesappkotlinproject.helper.showActionSnackbar
 import com.example.salesappkotlinproject.model.Product
 import com.example.salesappkotlinproject.ui.detail_product.DetailProductActivity
 import com.example.salesappkotlinproject.ui.product_list.adapter.ClickListener
@@ -43,13 +44,13 @@ class ProductListFragment : Fragment(), ClickListener {
 
         setupRecyclerView()
         addItemAction()
+        deleteSwipeAction()
     }
 
     private fun setupRecyclerView() {
         adapter = ProductListAdapter(this)
         rv_product_list.layoutManager = LinearLayoutManager(requireContext())
         rv_product_list.adapter = adapter
-
         adapter.addItems(productArray)
     }
 
@@ -111,6 +112,7 @@ class ProductListFragment : Fragment(), ClickListener {
         )
 
         adapter.addItem(product)
+        productArray.add(product)
         dialog.dismiss()
     }
 
@@ -119,10 +121,12 @@ class ProductListFragment : Fragment(), ClickListener {
             override fun onSwiped(viewHolder: RecyclerView.ViewHolder, direction: Int) {
                 val position = viewHolder.adapterPosition
 //                val item = viewModel.products?.get(position)
+                val item = productArray[position]
+                val name = item.name
                 adapter.deleteItem(position)
 
-//                showActionSnackbar(rv_product_list, "Вы удалили товар", "Востановить",
-//                    { restoreDeletedItem(item, position)}, requireContext())
+                showActionSnackbar(rv_product_list, "Вы удалили $name", "Востановить",
+                    { restoreDeletedItem(item, position)}, requireContext())
             }
         }
         val itemTouchHelper = ItemTouchHelper(swipeHandler)

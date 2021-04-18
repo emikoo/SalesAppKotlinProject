@@ -54,7 +54,7 @@
         android:inputType="number"
         android:layout_margin="@dimen/margin_16_dp"
         android:background="@null"
-        android:hint="Введите себестоимость"
+        android:hint="@string/add_cost_price"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/et_price" />
@@ -67,7 +67,7 @@
         android:inputType="number"
         android:layout_margin="@dimen/margin_16_dp"
         android:background="@null"
-        android:hint="Введите количество"
+        android:hint="@string/add_incoming_number"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/et_cost_price" />
