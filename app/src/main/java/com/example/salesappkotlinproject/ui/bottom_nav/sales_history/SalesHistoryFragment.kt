@@ -8,15 +8,15 @@ import android.view.ViewGroup
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.salesappkotlinproject.R
-import com.example.salesappkotlinproject.model.Product
 import com.example.salesappkotlinproject.ui.bottom_nav.sales_history.adapter.SalesHistoryAdapter
-import com.example.salesappkotlinproject.view_model.ProductViewModel
+import com.example.salesappkotlinproject.ui.bottom_nav.product_list.view_model.ProductViewModel
+import com.example.salesappkotlinproject.ui.bottom_nav.sales_history.view_model.SoldProductViewModel
 import kotlinx.android.synthetic.main.fragment_sales_history.*
 
 class SalesHistoryFragment : Fragment() {
 
     private lateinit var adapter: SalesHistoryAdapter
-    private lateinit var viewModel: ProductViewModel
+    private lateinit var viewModel: SoldProductViewModel
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -29,7 +29,7 @@ class SalesHistoryFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        viewModel = ViewModelProvider(this).get(ProductViewModel::class.java)
+        viewModel = ViewModelProvider(this).get(SoldProductViewModel::class.java)
         setupRecyclerView()
         subscribeToLiveData()
     }

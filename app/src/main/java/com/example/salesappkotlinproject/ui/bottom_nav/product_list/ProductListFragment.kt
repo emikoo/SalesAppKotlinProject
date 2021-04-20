@@ -1,13 +1,13 @@
 package com.example.salesappkotlinproject.ui.bottom_nav.product_list
 
 import android.app.AlertDialog
-import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.EditText
+import androidx.appcompat.widget.SearchView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.ItemTouchHelper
@@ -17,13 +17,11 @@ import com.example.salesappkotlinproject.R
 import com.example.salesappkotlinproject.helper.ItemSimpleTouch
 import com.example.salesappkotlinproject.helper.isEmptyInputData
 import com.example.salesappkotlinproject.helper.showActionSnackbar
+import com.example.salesappkotlinproject.helper.showToast
 import com.example.salesappkotlinproject.model.Product
 import com.example.salesappkotlinproject.ui.bottom_nav.product_list.adapter.ClickListener
 import com.example.salesappkotlinproject.ui.bottom_nav.product_list.adapter.ProductListAdapter
-import com.example.salesappkotlinproject.ui.detail_product.DetailProductActivity
-import com.example.salesappkotlinproject.ui.sell_product.SellProductActivity
-import com.example.salesappkotlinproject.view_model.ProductViewModel
-import kotlinx.android.synthetic.main.alert_sell.*
+import com.example.salesappkotlinproject.ui.bottom_nav.product_list.view_model.ProductViewModel
 import kotlinx.android.synthetic.main.fragment_product_list.*
 import java.util.*
 
@@ -48,7 +46,7 @@ class ProductListFragment : Fragment(), ClickListener {
         subscribeToLiveData()
         addItemAction()
         deleteSwipeAction()
- //       searchProductAction()
+        searchProductAction()
     }
 
     private fun setupRecyclerView() {
@@ -122,7 +120,6 @@ class ProductListFragment : Fragment(), ClickListener {
             numberEditText.text.toString().toInt(),
             numberEditText.text.toString().toInt()
         )
-
         adapter.addItem(product)
         viewModel.insertProduct(product)
         dialog.dismiss()
@@ -131,11 +128,11 @@ class ProductListFragment : Fragment(), ClickListener {
     private fun deleteSwipeAction() {
         val swipeHandler = object : ItemSimpleTouch(requireContext()) {
             override fun onSwiped(viewHolder: RecyclerView.ViewHolder, direction: Int) {
-                val position = viewHolder.adapterPosition
+                val position = viewHolder.bindingAdapterPosition
                 val item = viewModel.products?.get(position)
                 val name = item?.name
-                adapter.deleteItem(position)
                 viewModel.deleteProduct(item)
+                adapter.deleteItem(position)
 
                 showActionSnackbar(rv_product_list, "Вы удалили $name", "Востановить",
                     { restoreDeletedItem(item, position)}, requireContext())
@@ -146,55 +143,57 @@ class ProductListFragment : Fragment(), ClickListener {
     }
 
     private fun restoreDeletedItem(item: Product?, position: Int) {
-        adapter.restoreItem(item, position)
-        viewModel.insertProduct(item)
+        viewModel.restoreProduct(item)
+        adapter.restoreItem(item!!, position)
     }
 
-//    private fun searchProductAction() {
-//        search_field.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
-//            override fun onQueryTextSubmit(query: String): Boolean {
-//                val product = productArray as Product
-//                if (product.name.contains(query)) {
-//
-//                } else {
-//                    Toast.makeText(requireContext(), "Такого товара у вас нет", Toast.LENGTH_LONG).show()
-//            }
-//                return false
-//            }
-//            override fun onQueryTextChange(newText: String): Boolean {
-//
-//                return false
-//            }
-//        })
-//    }
+    private fun searchProductAction() {
+        search_field.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
+            override fun onQueryTextSubmit(query: String): Boolean {
+                return false
+            }
+            override fun onQueryTextChange(newText: String): Boolean {
+                var product = viewModel.data.value
+                for (data in product!!){
+                    if (data.name.contains(newText)) {
+                        adapter.filteredItem(data)
+                    } else {
+                        showToast(requireContext(), "У вас нет такого товара")
+                    }
+                }
+                return false
+            }
+
+        })
+    }
 
     override fun onItemClick(item: Product) {
-        val intent = Intent(requireContext(), DetailProductActivity::class.java)
-        intent.putExtra(product_detail, item)
-        startActivity(intent)
+//        val intent = Intent(requireContext(), DetailProductActivity::class.java)
+//        intent.putExtra(product_detail, item)
+//        startActivity(intent)
     }
 
     override fun onLongItemClick(item: Product) {
-        showSellingAlertDialog(item)
+//        showSellingAlertDialog(item)
     }
 
-    private fun showSellingAlertDialog(item: Product) {
-        val alert = AlertDialog.Builder(requireContext())
-        val view: View = layoutInflater.inflate(R.layout.alert_sell, null)
-        alert.setView(view)
-            .setCustomTitle(title_dialog)
-            .setCancelable(false)
-        alert.setPositiveButton("ДА"){ dialog, which ->
-            val intent = Intent(requireContext(), SellProductActivity::class.java)
-            intent.putExtra(product_detail, item)
-            startActivity(intent)
-            dialog.dismiss()
-        }
-        alert.setNegativeButton("НЕТ"){ dialog, which ->
-            dialog.dismiss()
-        }
-        alert.show()
-    }
+//    private fun showSellingAlertDialog(item: Product) {
+//        val alert = AlertDialog.Builder(requireContext())
+//        val view: View = layoutInflater.inflate(R.layout.alert_sell, null)
+//        alert.setView(view)
+//            .setCustomTitle(title_dialog)
+//            .setCancelable(false)
+//        alert.setPositiveButton("ДА"){ dialog, which ->
+//            val intent = Intent(requireContext(), SellProductActivity::class.java)
+//            intent.putExtra(product_detail, item)
+//            startActivity(intent)
+//            dialog.dismiss()
+//        }
+//        alert.setNegativeButton("НЕТ"){ dialog, which ->
+//            dialog.dismiss()
+//        }
+//        alert.show()
+//    }
 
     companion object {
         val product_detail = "PRODUCT_DETAIL"

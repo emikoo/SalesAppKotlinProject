@@ -3,18 +3,10 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_margin="8dp"
+    android:layout_marginStart="16dp"
+    android:layout_marginEnd="16dp"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
-
-    <View
-        android:id="@+id/blue_circle"
-        android:layout_width="8dp"
-        android:layout_height="8dp"
-        app:layout_constraintCircleRadius="4dp"
-        app:layout_constraintStart_toStartOf="parent"
-        android:background="@drawable/view_blue_circle"
-        app:layout_constraintTop_toTopOf="@id/tv_item_sales_name"
-        app:layout_constraintBottom_toBottomOf="@id/tv_item_sales_name"/>
 
     <TextView
         android:id="@+id/tv_item_sales_name"
@@ -22,7 +14,7 @@
         android:layout_height="wrap_content"
         style="@style/subtitle_semibold_style"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintStart_toEndOf="@id/blue_circle"
+        app:layout_constraintStart_toStartOf="parent"
         tools:text="Футболка ZARA"
         android:layout_marginStart="8dp"/>
 

@@ -93,7 +93,7 @@
         app:layout_constraintTop_toBottomOf="@id/edit_available_count"
         tools:text="20 шт." />
 
-    <EditText
+    <TextView
         android:id="@+id/edit_sold_count"
         style="@style/subtitle_regular_style"
         android:layout_width="wrap_content"

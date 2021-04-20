@@ -10,7 +10,7 @@
     <dimen name="margin_recycler">8dp</dimen>
     <dimen name="margin_bottom_recycler">8dp</dimen>
 
-    <dimen name="icon_size_bottom_nav">33dp</dimen>
+    <dimen name="icon_size_bottom_nav">24dp</dimen>
     <dimen name="size_view_blue_circle">8dp</dimen>
     <dimen name="radius_top_bottom_nav">20dp</dimen>
 

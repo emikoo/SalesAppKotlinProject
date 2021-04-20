@@ -18,6 +18,10 @@ class ProductRepository {
         database.insertProduct(data)
     }
 
+    fun restoreProduct(data: Product) {
+        database.restoreProduct(data)
+    }
+
     fun deleteProduct(data: Product) {
         database.deleteProduct(data)
     }

@@ -56,6 +56,7 @@
             android:layout_height="match_parent"
             android:layout_marginStart="16dp"
             android:gravity="center"
+            android:textAlignment="center"
             android:textSize="@dimen/date_size"
             app:layout_constraintStart_toStartOf="parent"
             tools:text="13 апреля, 2021" />
@@ -115,10 +116,11 @@
 
     <EditText
         android:id="@+id/et_sold_number"
-        style="@style/sell_hint_text_style"
+        style="@style/subtitle_semibold_style"
         android:layout_width="0dp"
         android:layout_height="30dp"
         android:layout_marginTop="8dp"
+        android:textAlignment="center"
         android:background="@drawable/custom_sell_edit_text"
         app:layout_constraintStart_toStartOf="@id/sold_price"
         app:layout_constraintEnd_toEndOf="@id/sold_price"

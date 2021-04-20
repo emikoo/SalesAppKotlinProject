@@ -1,11 +1,11 @@
-package com.example.salesappkotlinproject.view_model
+package com.example.salesappkotlinproject.ui.bottom_nav.sales_history.view_model
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.example.salesappkotlinproject.model.Product
 import com.example.salesappkotlinproject.repository.ProductRepository
 
-class ProductViewModel : ViewModel() {
+class SoldProductViewModel : ViewModel() {
     private val repository = ProductRepository()
 
     val data: MutableLiveData<MutableList<Product>> = MutableLiveData()
@@ -15,15 +15,7 @@ class ProductViewModel : ViewModel() {
     init {
         subscribeToData()
         subscribeToMessage()
-        repository.getProducts()
-    }
-
-    fun insertProduct(data: Product?) {
-        data?.let { repository.insertProduct(data) }
-    }
-
-    fun deleteProduct(data: Product?) {
-        data?.let { repository.deleteProduct(it) }
+        repository.getSoldProducts()
     }
 
     private fun subscribeToData() {
