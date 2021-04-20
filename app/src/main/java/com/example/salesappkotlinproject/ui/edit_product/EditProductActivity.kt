@@ -4,7 +4,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import com.example.salesappkotlinproject.R
 import com.example.salesappkotlinproject.model.Product
-import com.example.salesappkotlinproject.ui.product_list.ProductListFragment
+import com.example.salesappkotlinproject.ui.bottom_nav.product_list.ProductListFragment
 import kotlinx.android.synthetic.main.activity_edit_product.*
 
 class EditProductActivity : AppCompatActivity() {

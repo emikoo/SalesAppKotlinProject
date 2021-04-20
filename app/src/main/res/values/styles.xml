@@ -10,6 +10,14 @@
     <style name="ProductDialogStyle" parent="Theme.AppCompat.Light.Dialog.Alert">
     </style>
 
+    <style name="SplashScreen" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="android:statusBarColor">@color/color_main_blue</item>
+    </style>
+
+    <style name="LoginScreen" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="android:statusBarColor">@color/color_white</item>
+    </style>
+
     <style name="positiveButton">
         <item name="android:background">@null</item>
         <item name="android:textColor">@color/color_main_blue</item>

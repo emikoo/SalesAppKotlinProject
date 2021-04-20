@@ -4,8 +4,8 @@ import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import com.example.salesappkotlinproject.R
 import com.example.salesappkotlinproject.ui.main.adapter.MainViewPagerAdapter
-import com.example.salesappkotlinproject.ui.product_list.ProductListFragment
-import com.example.salesappkotlinproject.ui.sales_history.SalesHistoryFragment
+import com.example.salesappkotlinproject.ui.bottom_nav.product_list.ProductListFragment
+import com.example.salesappkotlinproject.ui.bottom_nav.sales_history.SalesHistoryFragment
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {

@@ -1,4 +1,4 @@
-package com.example.salesappkotlinproject.ui.product_list.adapter
+package com.example.salesappkotlinproject.ui.bottom_nav.product_list.adapter
 
 import android.view.LayoutInflater
 import android.view.View
@@ -84,7 +84,8 @@ open class BaseProductListViewHolder(itemView: View): RecyclerView.ViewHolder(it
 class ProductListViewHolder(itemView: View): BaseProductListViewHolder(itemView){
     fun bind(item: Product) {
         itemView.item_product_name.text = item.name
-        itemView.item_product_available_number.text = item.available_count.toString().toSht()
+        if (item.available_count > 0) itemView.item_product_available_number.text = item.available_count.toString().toSht()
+        else itemView.item_product_available_number.text = "0 шт."
     }
 }
 

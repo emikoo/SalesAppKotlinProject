@@ -8,7 +8,7 @@ import com.example.salesappkotlinproject.R
 import com.example.salesappkotlinproject.helper.toSht
 import com.example.salesappkotlinproject.helper.toSom
 import com.example.salesappkotlinproject.model.Product
-import com.example.salesappkotlinproject.ui.product_list.ProductListFragment.Companion.product_detail
+import com.example.salesappkotlinproject.ui.bottom_nav.product_list.ProductListFragment.Companion.product_detail
 import com.example.salesappkotlinproject.ui.sell_product.SellProductActivity
 import kotlinx.android.synthetic.main.activity_detail_product.*
 

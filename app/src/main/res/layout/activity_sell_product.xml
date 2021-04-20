@@ -89,12 +89,12 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/count"
-        app:layout_constraintTop_toBottomOf="@id/et_sold_price"
+        app:layout_constraintTop_toBottomOf="@id/sold_price"
         android:layout_marginTop="32dp"
         app:layout_constraintStart_toStartOf="@id/sell_date_container"/>
 
-    <EditText
-        android:id="@+id/et_sold_price"
+    <TextView
+        android:id="@+id/sold_price"
         style="@style/sell_hint_text_style"
         android:layout_width="70dp"
         android:layout_height="30dp"
@@ -107,9 +107,9 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/som"
-        app:layout_constraintStart_toEndOf="@id/et_sold_price"
-        app:layout_constraintTop_toTopOf="@id/et_sold_price"
-        app:layout_constraintBottom_toBottomOf="@id/et_sold_price"
+        app:layout_constraintStart_toEndOf="@id/sold_price"
+        app:layout_constraintTop_toTopOf="@id/sold_price"
+        app:layout_constraintBottom_toBottomOf="@id/sold_price"
         style="@style/subtitle_gray_style"
         android:layout_marginStart="4dp"/>
 
@@ -120,8 +120,8 @@
         android:layout_height="30dp"
         android:layout_marginTop="8dp"
         android:background="@drawable/custom_sell_edit_text"
-        app:layout_constraintStart_toStartOf="@id/et_sold_price"
-        app:layout_constraintEnd_toEndOf="@id/et_sold_price"
+        app:layout_constraintStart_toStartOf="@id/sold_price"
+        app:layout_constraintEnd_toEndOf="@id/sold_price"
         app:layout_constraintTop_toBottomOf="@id/sell_number_title" />
 
     <TextView

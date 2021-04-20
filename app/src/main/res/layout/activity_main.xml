@@ -15,7 +15,7 @@
         android:layout_marginTop="@dimen/margin_title"
         android:text="Мои товары"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"/>
 
     <androidx.viewpager2.widget.ViewPager2
         android:id="@+id/view_pager"

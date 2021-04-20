@@ -16,4 +16,6 @@
 
     <color name="color_white">#FFFFFF</color>
     <color name="color_gray">#8F9BB3</color>
+
+    <color name="color_splash">#008DC4</color>
 </resources>

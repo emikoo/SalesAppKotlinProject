@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.product_list.ProductListFragment">
+    tools:context=".ui.bottom_nav.product_list.ProductListFragment">
 
     <androidx.appcompat.widget.SearchView
         android:id="@+id/search_field"
@@ -18,14 +18,14 @@
         app:layout_constraintTop_toTopOf="parent"
         app:queryHint="Введите товар" />
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/rv_product_list"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        app:layout_constraintBottom_toTopOf="@id/fab_add"
-        app:layout_constraintTop_toBottomOf="@id/search_field"
-        android:layout_marginTop="@dimen/margin_recycler"
-        android:layout_marginBottom="@dimen/margin_recycler"/>
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rv_product_list"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            app:layout_constraintBottom_toTopOf="@id/fab_add"
+            app:layout_constraintTop_toBottomOf="@id/search_field"
+            android:layout_marginTop="@dimen/margin_recycler"
+            android:layout_marginBottom="@dimen/margin_recycler"/>
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/fab_add"
