@@ -2,8 +2,11 @@ package com.example.salesappkotlinproject.ui.bottom_nav.product_list.view_model
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
 import com.example.salesappkotlinproject.model.Product
 import com.example.salesappkotlinproject.repository.ProductRepository
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 
 class ProductViewModel : ViewModel() {
     private val repository = ProductRepository()
@@ -19,15 +22,22 @@ class ProductViewModel : ViewModel() {
     }
 
     fun insertProduct(data: Product?) {
-        if (data != null) {
-            repository.insertProduct(data)
-            products?.add(data)
+        viewModelScope.launch(Dispatchers.IO) {
+            if (data != null) {
+                repository.insertProduct(data)
+            }
         }
     }
 
     fun restoreProduct(data: Product?) {
         if (data != null) {
             repository.restoreProduct(data)
+        }
+    }
+
+    fun updateProduct(data: Product) {
+        viewModelScope.launch( Dispatchers.IO ){
+            repository.updateProduct(data)
         }
     }
 

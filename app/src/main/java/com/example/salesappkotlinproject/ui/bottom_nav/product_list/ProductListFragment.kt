@@ -1,6 +1,7 @@
 package com.example.salesappkotlinproject.ui.bottom_nav.product_list
 
 import android.app.AlertDialog
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -22,6 +23,9 @@ import com.example.salesappkotlinproject.model.Product
 import com.example.salesappkotlinproject.ui.bottom_nav.product_list.adapter.ClickListener
 import com.example.salesappkotlinproject.ui.bottom_nav.product_list.adapter.ProductListAdapter
 import com.example.salesappkotlinproject.ui.bottom_nav.product_list.view_model.ProductViewModel
+import com.example.salesappkotlinproject.ui.detail_product.DetailProductActivity
+import com.example.salesappkotlinproject.ui.sell_product.SellProductActivity
+import kotlinx.android.synthetic.main.alert_sell.*
 import kotlinx.android.synthetic.main.fragment_product_list.*
 import java.util.*
 
@@ -168,32 +172,32 @@ class ProductListFragment : Fragment(), ClickListener {
     }
 
     override fun onItemClick(item: Product) {
-//        val intent = Intent(requireContext(), DetailProductActivity::class.java)
-//        intent.putExtra(product_detail, item)
-//        startActivity(intent)
+        val intent = Intent(requireContext(), DetailProductActivity::class.java)
+        intent.putExtra(product_detail, item)
+        startActivity(intent)
     }
 
     override fun onLongItemClick(item: Product) {
-//        showSellingAlertDialog(item)
+        showSellingAlertDialog(item)
     }
 
-//    private fun showSellingAlertDialog(item: Product) {
-//        val alert = AlertDialog.Builder(requireContext())
-//        val view: View = layoutInflater.inflate(R.layout.alert_sell, null)
-//        alert.setView(view)
-//            .setCustomTitle(title_dialog)
-//            .setCancelable(false)
-//        alert.setPositiveButton("ДА"){ dialog, which ->
-//            val intent = Intent(requireContext(), SellProductActivity::class.java)
-//            intent.putExtra(product_detail, item)
-//            startActivity(intent)
-//            dialog.dismiss()
-//        }
-//        alert.setNegativeButton("НЕТ"){ dialog, which ->
-//            dialog.dismiss()
-//        }
-//        alert.show()
-//    }
+    private fun showSellingAlertDialog(item: Product) {
+        val alert = AlertDialog.Builder(requireContext())
+        val view: View = layoutInflater.inflate(R.layout.alert_sell, null)
+        alert.setView(view)
+            .setCustomTitle(title_dialog)
+            .setCancelable(false)
+        alert.setPositiveButton("ДА"){ dialog, which ->
+            val intent = Intent(requireContext(), SellProductActivity::class.java)
+            intent.putExtra(product_detail, item)
+            startActivity(intent)
+            dialog.dismiss()
+        }
+        alert.setNegativeButton("НЕТ"){ dialog, which ->
+            dialog.dismiss()
+        }
+        alert.show()
+    }
 
     companion object {
         val product_detail = "PRODUCT_DETAIL"

@@ -11,6 +11,9 @@ interface ProductDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun restoreProduct(data: Product)
 
+    @Update
+    fun updateItem(data: Product)
+
     @Query("SELECT * FROM product")
     fun getProducts(): MutableList<Product>
 
