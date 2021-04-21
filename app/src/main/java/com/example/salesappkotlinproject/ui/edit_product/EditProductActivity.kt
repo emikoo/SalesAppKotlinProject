@@ -1,5 +1,6 @@
 package com.example.salesappkotlinproject.ui.edit_product
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.lifecycle.ViewModelProvider
@@ -8,6 +9,7 @@ import com.example.salesappkotlinproject.helper.showToast
 import com.example.salesappkotlinproject.model.Product
 import com.example.salesappkotlinproject.ui.bottom_nav.product_list.ProductListFragment
 import com.example.salesappkotlinproject.ui.bottom_nav.product_list.view_model.ProductViewModel
+import com.example.salesappkotlinproject.ui.main.MainActivity
 import kotlinx.android.synthetic.main.activity_edit_product.*
 
 class EditProductActivity : AppCompatActivity() {
@@ -42,7 +44,7 @@ class EditProductActivity : AppCompatActivity() {
         }
         btn_edit_save.setOnClickListener {
             saveEdits()
-            onBackPressed()
+            startActivityForResult(Intent(this, MainActivity::class.java), 2)
         }
     }
 
