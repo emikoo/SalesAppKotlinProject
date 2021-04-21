@@ -8,6 +8,7 @@ import java.util.*
 @Entity(tableName = "product")
 data class Product (
     @PrimaryKey(autoGenerate = false)
+    var id: Int,
     var name: String,
     var sale_price: Int,
     var cost_price: Int,

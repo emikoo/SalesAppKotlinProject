@@ -56,6 +56,7 @@ class SellProductActivity : AppCompatActivity() {
         sell_positive.setOnClickListener {
             saveEdits()
             startActivityForResult(Intent(this, MainActivity::class.java), 1)
+            finish()
         }
     }
 
@@ -85,7 +86,7 @@ class SellProductActivity : AppCompatActivity() {
             val availableNumber = number - totalSold
             val sold = true
 
-            product = Product(product.name, product.sale_price, product.cost_price, product.date, product.count,
+            product = Product(product.id, product.name, product.sale_price, product.cost_price, product.date, product.count,
             availableNumber, sold, totalSold)
 
             viewModel.updateProduct(product)

@@ -42,6 +42,7 @@ class DetailProductActivity : AppCompatActivity() {
             val intent = Intent(this, EditProductActivity::class.java)
             intent.putExtra(product_detail, product)
             startActivity(intent)
+            finish()
         }
 
         btn_detail_sell.setOnClickListener {
@@ -49,6 +50,7 @@ class DetailProductActivity : AppCompatActivity() {
             val intent = Intent(this, SellProductActivity::class.java)
             intent.putExtra(product_detail, product)
             startActivity(intent)
+            finish()
         }
     }
 }

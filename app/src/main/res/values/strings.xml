@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">SalesAppKotlinProject</string>
+    <string name="app_name">Easy Count</string>
     <string name="product_list">Список товаров</string>
     <string name="sales_history">История продаж</string>
     <!-- TODO: Remove or change this placeholder text -->

@@ -116,7 +116,7 @@ class ProductListFragment : Fragment(), ClickListener {
     ) {
         val calendar: Calendar = GregorianCalendar()
         val date: Date = calendar.time
-        val product = Product(
+        val product = Product( 1,
             nameEditText.text.toString(),
             priceEditText.text.toString().toInt(),
             costPriceEdiText.text.toString().toInt(),
@@ -157,10 +157,10 @@ class ProductListFragment : Fragment(), ClickListener {
                 return false
             }
             override fun onQueryTextChange(newText: String): Boolean {
-                var product = viewModel.data.value
+                val product = viewModel.data.value
                 for (data in product!!){
                     if (data.name.contains(newText)) {
-                        adapter.filteredItem(data)
+
                     } else {
                         showToast(requireContext(), "У вас нет такого товара")
                     }

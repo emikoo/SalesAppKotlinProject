@@ -36,9 +36,7 @@ class ProductViewModel : ViewModel() {
     }
 
     fun updateProduct(data: Product) {
-        viewModelScope.launch( Dispatchers.IO ){
-            repository.updateProduct(data)
-        }
+        repository.updateProduct(data)
     }
 
     fun deleteProduct(data: Product?) {
