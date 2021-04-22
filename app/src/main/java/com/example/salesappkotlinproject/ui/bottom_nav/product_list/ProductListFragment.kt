@@ -157,13 +157,12 @@ class ProductListFragment : Fragment(), ClickListener {
                 return false
             }
             override fun onQueryTextChange(newText: String): Boolean {
-                val product = viewModel.data.value
-                for (data in product!!){
-                    if (data.name.contains(newText)) {
-
-                    } else {
-                        showToast(requireContext(), "У вас нет такого товара")
-                    }
+                if (newText == "") adapter.addItems(viewModel.filteredProducts)
+                else {
+                    val searchText = newText.toLowerCase()
+                    val filtered = mutableListOf<Product>()
+                    viewModel.filteredProducts.forEach { if (it.name.toLowerCase().contains(searchText)) filtered.add(it) }
+                    adapter.addItems(filtered)
                 }
                 return false
             }

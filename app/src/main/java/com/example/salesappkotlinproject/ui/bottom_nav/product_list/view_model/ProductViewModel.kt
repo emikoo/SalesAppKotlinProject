@@ -14,6 +14,7 @@ class ProductViewModel : ViewModel() {
     val data: MutableLiveData<MutableList<Product>> = MutableLiveData()
     val message: MutableLiveData<String>? = MutableLiveData()
     var products: MutableList<Product>? = mutableListOf()
+    var filteredProducts: MutableList<Product> = mutableListOf()
 
     init {
         subscribeToData()
@@ -49,6 +50,7 @@ class ProductViewModel : ViewModel() {
         repository.data.observeForever {
             data.value = it
             products = data.value
+            filteredProducts = it
         }
     }
 

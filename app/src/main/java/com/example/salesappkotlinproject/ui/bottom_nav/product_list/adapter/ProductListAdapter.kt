@@ -49,7 +49,7 @@ class ProductListAdapter(private val listener: ClickListener): RecyclerView.Adap
     }
 
     fun addItems(item: MutableList<Product>) {
-        items.addAll(item)
+        items = item
         notifyDataSetChanged()
     }
 
@@ -57,11 +57,6 @@ class ProductListAdapter(private val listener: ClickListener): RecyclerView.Adap
         items.add(item)
         notifyDataSetChanged()
 //        notifyItemRangeInserted(items.lastIndex, items.count()-1)
-    }
-
-    fun filteredItem(item: Product){
-
-        notifyDataSetChanged()
     }
 
     fun deleteItem(position: Int) {
@@ -93,7 +88,7 @@ class ProductListViewHolder(itemView: View): BaseProductListViewHolder(itemView)
     }
 }
 
-class EmptyProductListViewHolder(itemView: View): BaseProductListViewHolder(itemView){}
+class EmptyProductListViewHolder(itemView: View): BaseProductListViewHolder(itemView)
 
 interface ClickListener {
     fun onItemClick(item: Product)

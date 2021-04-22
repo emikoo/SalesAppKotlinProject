@@ -41,4 +41,7 @@
     <string name="invalid_username">Not a valid username</string>
     <string name="invalid_password">Password must be >5 characters</string>
     <string name="login_failed">"Login failed"</string>
+    <string name="total">Итого:</string>
+    <string name="sales_number">Кол-во продаж:</string>
+    <string name="proceed">Выручка:</string>
 </resources>
