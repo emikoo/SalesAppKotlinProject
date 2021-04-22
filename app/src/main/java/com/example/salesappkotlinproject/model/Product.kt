@@ -7,7 +7,7 @@ import java.util.*
 
 @Entity(tableName = "product")
 data class Product (
-    @PrimaryKey(autoGenerate = false)
+    @PrimaryKey(autoGenerate = true)
     var id: Int,
     var name: String,
     var sale_price: Int,

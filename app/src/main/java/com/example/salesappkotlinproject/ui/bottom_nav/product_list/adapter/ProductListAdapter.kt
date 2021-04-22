@@ -12,7 +12,6 @@ import kotlinx.android.synthetic.main.item_product_list.view.*
 class ProductListAdapter(private val listener: ClickListener): RecyclerView.Adapter<BaseProductListViewHolder>() {
 
     private var items = mutableListOf<Product>()
-    private var filteredList = mutableListOf<Product>()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): BaseProductListViewHolder {
         return if (viewType == VIEW_TYPE_DATA) ProductListViewHolder(
@@ -61,7 +60,7 @@ class ProductListAdapter(private val listener: ClickListener): RecyclerView.Adap
     }
 
     fun filteredItem(item: Product){
-        filteredList.add(item)
+
         notifyDataSetChanged()
     }
 

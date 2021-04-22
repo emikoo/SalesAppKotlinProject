@@ -116,7 +116,7 @@ class ProductListFragment : Fragment(), ClickListener {
     ) {
         val calendar: Calendar = GregorianCalendar()
         val date: Date = calendar.time
-        val product = Product( 1,
+        val product = Product(0,
             nameEditText.text.toString(),
             priceEditText.text.toString().toInt(),
             costPriceEdiText.text.toString().toInt(),
