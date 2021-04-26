@@ -50,13 +50,19 @@ class SalesHistoryFragment : Fragment() {
 
     private fun makeAnalytics() {
         val productsArray = viewModel.product
-        var total = 0
         var soldNumber = 0
         var proceed = 0
+        var total = 0
         for (array in productsArray) {
-            total += array.sale_price
+            var numTotal = 0
+            numTotal = array.count_sold * array.sale_price
+            total += numTotal
+
             soldNumber += array.count_sold
-            proceed += array.cost_price
+
+            var numProceed = 0
+            numProceed = array.count_sold * array.cost_price
+            proceed += numProceed
 
             tv_total_som.text = total.toString()
             tv_sales_sht.text = soldNumber.toString().toSht()

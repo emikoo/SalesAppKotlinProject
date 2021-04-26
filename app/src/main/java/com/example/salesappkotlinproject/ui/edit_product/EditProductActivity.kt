@@ -45,8 +45,8 @@ class EditProductActivity : AppCompatActivity() {
         }
         btn_edit_save.setOnClickListener {
             saveEdits()
-            startActivityForResult(Intent(this, MainActivity::class.java), 2)
-            finish()
+            startActivity(Intent(this, MainActivity::class.java))
+            onBackPressed()
         }
     }
 
