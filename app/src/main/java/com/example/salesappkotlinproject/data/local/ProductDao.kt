@@ -1,7 +1,7 @@
 package com.example.salesappkotlinproject.data.local
 
 import androidx.room.*
-import com.example.salesappkotlinproject.model.Product
+import com.example.salesappkotlinproject.data.model.Product
 
 @Dao
 interface ProductDao {

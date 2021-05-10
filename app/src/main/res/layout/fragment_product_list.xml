@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.bottom_nav.product_list.ProductListFragment">
+    tools:context=".ui.owner.bottom_nav.product_list.ProductListFragment">
 
     <androidx.appcompat.widget.SearchView
         android:id="@+id/search_field"

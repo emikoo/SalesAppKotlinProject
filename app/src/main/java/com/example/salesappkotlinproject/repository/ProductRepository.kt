@@ -2,7 +2,7 @@ package com.example.salesappkotlinproject.repository
 
 import androidx.lifecycle.MutableLiveData
 import com.example.salesappkotlinproject.data.local.ApplicationEnactus
-import com.example.salesappkotlinproject.model.Product
+import com.example.salesappkotlinproject.data.model.Product
 
 class ProductRepository {
     private val database =  ApplicationEnactus.getAppDatabase().productDao()

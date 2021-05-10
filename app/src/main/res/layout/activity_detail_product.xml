@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.detail_product.DetailProductActivity">
+    tools:context=".ui.owner.detail_product.DetailProductActivity">
 
     <ImageButton
         android:id="@+id/btn_left_detail"
@@ -21,6 +21,9 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:enabled="true"
+        android:layout_marginEnd="4dp"
+        android:maxLines="1"
+        android:ellipsize="end"
         app:layout_constraintStart_toEndOf="@id/btn_left_detail"
         app:layout_constraintTop_toTopOf="@id/btn_left_detail"
         app:layout_constraintBottom_toBottomOf="@id/btn_left_detail"

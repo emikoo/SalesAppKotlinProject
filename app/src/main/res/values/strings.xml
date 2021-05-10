@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Easy Count</string>
+    <string name="app_name">Esep</string>
     <string name="product_list">Список товаров</string>
     <string name="sales_history">История продаж</string>
     <!-- TODO: Remove or change this placeholder text -->
@@ -37,11 +37,26 @@
     <string name="prompt_password">Password</string>
     <string name="action_sign_in">Sign in or register</string>
     <string name="action_sign_in_short">Sign in</string>
-    <string name="welcome">"Welcome !"</string>
+    <string name="welcome">"Добро пожаловать !"</string>
     <string name="invalid_username">Not a valid username</string>
     <string name="invalid_password">Password must be >5 characters</string>
     <string name="login_failed">"Login failed"</string>
     <string name="total">Итого:</string>
     <string name="sales_number">Кол-во продаж:</string>
     <string name="proceed">Выручка:</string>
+    <string name="make_account">Создать аккаунт</string>
+    <string name="slogan">Надежно и быстро</string>
+    <string name="name">Эсеп</string>
+    <string name="login">Войти</string>
+    <string name="sign_up">Регистрация</string>
+    <string name="log_in">Логин</string>
+    <string name="password">Пароль</string>
+    <string name="key">Ключ владельца</string>
+    <string name="already_have_account">Уже есть аккаунт</string>
+    <string name="ready">Готово</string>
+    <string name="dont_have_account">Ещё нет аккаунта</string>
+    <string name="then">Далее</string>
+    <string name="who_are_you">Кем вы являетесь ?</string>
+    <string name="back">Назад</string>
+    <string name="analytics">Аналитика</string>
 </resources>

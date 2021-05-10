@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.sell_product.SellProductActivity">
+    tools:context=".ui.owner.sell_product.SellProductActivity">
 
     <TextView
         style="@style/title_style"

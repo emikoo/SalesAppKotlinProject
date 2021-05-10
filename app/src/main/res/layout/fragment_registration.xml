@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/reg_card_view"
+    android:layout_width="match_parent"
+    android:layout_height="404dp"
+    app:cardCornerRadius="12dp"
+    app:layout_constraintBottom_toBottomOf="parent"
+    app:layout_constraintTop_toTopOf="parent"
+    tools:context=".ui.authorization.registration.RegistrationFragment">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/color_main_blue">
+
+        <TextView
+            android:id="@+id/registration_text"
+            style="@style/detail_title_style"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="52dp"
+            android:gravity="center"
+            android:text="@string/sign_up"
+            android:textColor="@color/color_white"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <EditText
+            android:id="@+id/reg_et_login"
+            style="@style/auth_et_text_style"
+            android:layout_width="match_parent"
+            android:layout_height="36dp"
+            android:layout_marginStart="24dp"
+            android:layout_marginTop="52dp"
+            android:layout_marginEnd="24dp"
+            android:background="@drawable/auth_et"
+            android:hint="@string/log_in"
+            android:paddingStart="16dp"
+            android:textColorHint="@color/color_main_blue"
+            app:layout_constraintTop_toBottomOf="@id/registration_text"
+            tools:ignore="RtlSymmetry" />
+
+        <EditText
+            android:id="@+id/reg_et_password"
+            style="@style/auth_et_text_style"
+            android:layout_width="match_parent"
+            android:layout_height="36dp"
+            android:layout_marginStart="24dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="24dp"
+            android:background="@drawable/auth_et"
+            android:hint="@string/password"
+            android:inputType="textPassword"
+            android:paddingStart="16dp"
+            android:textColorHint="@color/color_main_blue"
+            app:layout_constraintTop_toBottomOf="@id/reg_et_login"
+            tools:ignore="RtlSymmetry" />
+
+        <Button
+            android:id="@+id/reg_btn_login"
+            style="@style/auth_subtitle_style"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@android:color/transparent"
+            android:text="@string/already_have_account"
+            android:textAllCaps="false"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/reg_et_password" />
+
+        <Button
+            android:id="@+id/reg_btn_go"
+            style="@style/auth_btn_style"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="24dp"
+            android:background="@android:color/transparent"
+            android:text="@string/ready"
+            android:textAllCaps="false"
+            android:textColor="@color/color_white"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/reg_btn_login" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.cardview.widget.CardView>

@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.detail_product.DetailProductActivity">
+    tools:context=".ui.owner.detail_product.DetailProductActivity">
 
     <ImageButton
         android:id="@+id/btn_edit_close"
@@ -93,7 +93,7 @@
         app:layout_constraintTop_toBottomOf="@id/edit_available_count"
         tools:text="20 шт." />
 
-    <TextView
+    <EditText
         android:id="@+id/edit_sold_count"
         style="@style/subtitle_regular_style"
         android:layout_width="wrap_content"
