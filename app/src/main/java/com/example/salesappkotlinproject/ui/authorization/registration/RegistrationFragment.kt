@@ -41,7 +41,7 @@ class RegistrationFragment : Fragment() {
 
         reg_btn_go.setOnClickListener {
             saveData()
-            openOwnerScreen()
+//            openOwnerScreen()
         }
     }
 
