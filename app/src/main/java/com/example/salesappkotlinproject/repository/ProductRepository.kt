@@ -1,36 +1,44 @@
 package com.example.salesappkotlinproject.repository
 
 import androidx.lifecycle.MutableLiveData
-import com.example.salesappkotlinproject.data.local.ApplicationEnactus
+import com.example.salesappkotlinproject.data.local.ProductDao
 import com.example.salesappkotlinproject.data.model.Product
 
-class ProductRepository {
-    private val database =  ApplicationEnactus.getAppDatabase().productDao()
+interface ProductRepository{
+    fun getProducts()
+    fun insertProduct(data: Product)
+    fun updateProduct(data: Product)
+    fun restoreProduct(data: Product)
+    fun deleteProduct(data: Product)
+    fun getSoldProducts()
+}
+
+class ProductRepositoryImpl(private val database: ProductDao): ProductRepository {
 
     val data: MutableLiveData<MutableList<Product>> = MutableLiveData()
     val message: MutableLiveData<String>? = MutableLiveData()
 
-    fun getProducts() {
+    override fun getProducts() {
         data.value = database.getProducts()
     }
 
-    fun insertProduct(data: Product) {
+    override fun insertProduct(data: Product) {
         database.insertProduct(data)
     }
 
-    fun updateProduct(data: Product) {
+    override fun updateProduct(data: Product) {
         database.updateItem(data)
     }
 
-    fun restoreProduct(data: Product) {
+    override fun restoreProduct(data: Product) {
         database.restoreProduct(data)
     }
 
-    fun deleteProduct(data: Product) {
+    override fun deleteProduct(data: Product) {
         database.deleteProduct(data)
     }
 
-    fun getSoldProducts(){
+    override fun getSoldProducts(){
         data.value = database.getSoldProducts()
     }
 }

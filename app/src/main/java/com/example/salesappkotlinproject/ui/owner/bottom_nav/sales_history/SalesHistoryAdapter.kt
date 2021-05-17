@@ -1,4 +1,4 @@
-package com.example.salesappkotlinproject.ui.owner.bottom_nav.sales_history.adapter
+package com.example.salesappkotlinproject.ui.owner.bottom_nav.sales_history
 
 import android.view.LayoutInflater
 import android.view.View
@@ -19,7 +19,8 @@ class SalesHistoryAdapter: RecyclerView.Adapter<BaseSalesViewHolder>() {
         return if (viewType == VIEW_TYPE_DATA) SalesHistoryViewHolder(
             LayoutInflater.from(parent.context).inflate(R.layout.item_sales_history, parent, false)
         ) else EmptySalesViewHolder(
-            LayoutInflater.from(parent.context).inflate(R.layout.item_empty_product_list, parent, false)
+            LayoutInflater.from(parent.context)
+                .inflate(R.layout.item_empty_product_list, parent, false)
         )
     }
 

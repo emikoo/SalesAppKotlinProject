@@ -5,14 +5,12 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.salesappkotlinproject.R
 import com.example.salesappkotlinproject.helper.toSht
 import com.example.salesappkotlinproject.helper.toSom
-import com.example.salesappkotlinproject.ui.owner.bottom_nav.sales_history.adapter.SalesHistoryAdapter
-import com.example.salesappkotlinproject.ui.owner.bottom_nav.sales_history.view_model.SoldProductViewModel
 import kotlinx.android.synthetic.main.fragment_sales_history.*
+import org.koin.androidx.viewmodel.ext.android.getViewModel
 
 class SalesHistoryFragment : Fragment() {
 
@@ -30,7 +28,7 @@ class SalesHistoryFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        viewModel = ViewModelProvider(this).get(SoldProductViewModel::class.java)
+        viewModel = getViewModel(clazz = SoldProductViewModel::class)
         setupViews()
         subscribeToLiveData()
     }
@@ -41,7 +39,8 @@ class SalesHistoryFragment : Fragment() {
     }
 
     private fun setupRecyclerView() {
-        adapter = SalesHistoryAdapter()
+        adapter =
+            SalesHistoryAdapter()
         rv_sales_list.layoutManager = LinearLayoutManager(requireContext())
         rv_sales_list.adapter = adapter
     }

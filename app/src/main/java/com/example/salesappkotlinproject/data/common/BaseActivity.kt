@@ -12,8 +12,6 @@ import kotlinx.android.synthetic.main.activity_main.*
 
 abstract class BaseActivity : AppCompatActivity() {
 
-
-
     protected fun createDrawer() {
         val header = createAccountHeader()
         val analytics = PrimaryDrawerItem().withName(R.string.analytics).withIdentifier(1)

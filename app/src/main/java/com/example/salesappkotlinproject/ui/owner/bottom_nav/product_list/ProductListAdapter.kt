@@ -1,4 +1,4 @@
-package com.example.salesappkotlinproject.ui.owner.bottom_nav.product_list.adapter
+package com.example.salesappkotlinproject.ui.owner.bottom_nav.product_list
 
 import android.view.LayoutInflater
 import android.view.View
@@ -17,7 +17,8 @@ class ProductListAdapter(private val listener: ClickListener): RecyclerView.Adap
         return if (viewType == VIEW_TYPE_DATA) ProductListViewHolder(
             LayoutInflater.from(parent.context).inflate(R.layout.item_product_list, parent, false)
         ) else EmptyProductListViewHolder(
-            LayoutInflater.from(parent.context).inflate(R.layout.item_empty_product_list, parent, false)
+            LayoutInflater.from(parent.context)
+                .inflate(R.layout.item_empty_product_list, parent, false)
         )
     }
 

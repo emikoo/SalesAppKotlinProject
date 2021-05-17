@@ -2,13 +2,13 @@ package com.example.salesappkotlinproject.ui.owner.edit_product
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import androidx.lifecycle.ViewModelProvider
 import com.example.salesappkotlinproject.R
 import com.example.salesappkotlinproject.helper.showToast
 import com.example.salesappkotlinproject.data.model.Product
 import com.example.salesappkotlinproject.ui.owner.bottom_nav.product_list.ProductListFragment
-import com.example.salesappkotlinproject.ui.owner.bottom_nav.product_list.view_model.ProductViewModel
+import com.example.salesappkotlinproject.ui.owner.bottom_nav.product_list.ProductViewModel
 import kotlinx.android.synthetic.main.activity_edit_product.*
+import org.koin.androidx.viewmodel.ext.android.getViewModel
 
 class EditProductActivity : AppCompatActivity() {
 
@@ -19,7 +19,7 @@ class EditProductActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_edit_product)
 
-        viewModel = ViewModelProvider(this).get(ProductViewModel::class.java)
+        viewModel = getViewModel(clazz = ProductViewModel::class)
         initViews()
         setupListener()
     }

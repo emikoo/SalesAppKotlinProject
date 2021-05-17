@@ -1,6 +1,7 @@
 package com.example.salesappkotlinproject.ui.owner.bottom_nav.product_list
 
 import android.app.AlertDialog
+import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -10,22 +11,16 @@ import android.widget.Button
 import android.widget.EditText
 import androidx.appcompat.widget.SearchView
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.salesappkotlinproject.R
-import com.example.salesappkotlinproject.helper.ItemSimpleTouch
-import com.example.salesappkotlinproject.helper.isEmptyInputData
-import com.example.salesappkotlinproject.helper.showActionSnackbar
 import com.example.salesappkotlinproject.data.model.Product
-import com.example.salesappkotlinproject.ui.owner.bottom_nav.product_list.adapter.ClickListener
-import com.example.salesappkotlinproject.ui.owner.bottom_nav.product_list.adapter.ProductListAdapter
-import com.example.salesappkotlinproject.ui.owner.bottom_nav.product_list.view_model.ProductViewModel
+import com.example.salesappkotlinproject.helper.*
 import com.example.salesappkotlinproject.ui.owner.detail_product.DetailProductActivity
 import com.example.salesappkotlinproject.ui.owner.sell_product.SellProductActivity
-import kotlinx.android.synthetic.main.alert_sell.*
 import kotlinx.android.synthetic.main.fragment_product_list.*
+import org.koin.androidx.viewmodel.ext.android.getViewModel
 import java.util.*
 
 class ProductListFragment : Fragment(), ClickListener {
@@ -44,7 +39,7 @@ class ProductListFragment : Fragment(), ClickListener {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        viewModel = ViewModelProvider(this).get(ProductViewModel::class.java)
+        viewModel = getViewModel(clazz = ProductViewModel::class)
         setupRecyclerView()
         subscribeToLiveData()
         addItemAction()
@@ -114,7 +109,7 @@ class ProductListFragment : Fragment(), ClickListener {
         addItem(nameEditText, priceEditText, costPriceEdiText, numberEditText, dialog)
     }
 
-    private fun addItem(
+    fun addItem(
         nameEditText: EditText, priceEditText: EditText,
         costPriceEdiText: EditText, numberEditText: EditText, dialog: AlertDialog
     ) {
@@ -129,9 +124,9 @@ class ProductListFragment : Fragment(), ClickListener {
             numberEditText.text.toString().toInt(),
             numberEditText.text.toString().toInt()
         )
+        dialog.dismiss()
         adapter.addItem(product)
         viewModel.insertProduct(product)
-        dialog.dismiss()
     }
 
     private fun deleteSwipeAction() {
@@ -186,28 +181,16 @@ class ProductListFragment : Fragment(), ClickListener {
     }
 
     override fun onLongItemClick(item: Product) {
-        showSellingAlertDialog(item)
-    }
 
-    private fun showSellingAlertDialog(item: Product) {
-        val alert = AlertDialog.Builder(requireContext())
-        val view: View = layoutInflater.inflate(R.layout.alert_sell, null)
-        alert.setView(view)
-            .setCustomTitle(title_dialog)
-            .setCancelable(false)
-        alert.setPositiveButton("ДА") { dialog, which ->
-            val intent = Intent(requireContext(), SellProductActivity::class.java)
-            intent.putExtra(product_detail, item)
-            startActivity(intent)
-            dialog.dismiss()
-        }
-        alert.setNegativeButton("НЕТ") { dialog, which ->
-            dialog.dismiss()
-        }
-        alert.show()
     }
 
     companion object {
         val product_detail = "PRODUCT_DETAIL"
+
+        fun instance(context: Context, item: Product) {
+            val intent = Intent(context, SellProductActivity::class.java)
+            intent.putExtra(product_detail, item)
+            context.startActivity(intent)
+        }
     }
 }

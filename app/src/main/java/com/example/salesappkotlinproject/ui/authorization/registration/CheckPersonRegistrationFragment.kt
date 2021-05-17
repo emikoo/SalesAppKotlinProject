@@ -11,7 +11,7 @@ import com.example.salesappkotlinproject.helper.showToast
 import com.example.salesappkotlinproject.ui.authorization.SplashActivity
 import kotlinx.android.synthetic.main.fragment_check_owner.*
 
-class CheckOwnerFragment : Fragment() {
+class CheckPersonRegistrationFragment : Fragment() {
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,

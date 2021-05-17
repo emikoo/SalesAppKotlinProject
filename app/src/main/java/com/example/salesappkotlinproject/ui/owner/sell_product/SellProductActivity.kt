@@ -3,13 +3,13 @@ package com.example.salesappkotlinproject.ui.owner.sell_product
 import android.app.DatePickerDialog
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import androidx.lifecycle.ViewModelProvider
 import com.example.salesappkotlinproject.R
 import com.example.salesappkotlinproject.helper.showToast
 import com.example.salesappkotlinproject.data.model.Product
 import com.example.salesappkotlinproject.ui.owner.bottom_nav.product_list.ProductListFragment.Companion.product_detail
-import com.example.salesappkotlinproject.ui.owner.bottom_nav.product_list.view_model.ProductViewModel
+import com.example.salesappkotlinproject.ui.owner.bottom_nav.product_list.ProductViewModel
 import kotlinx.android.synthetic.main.activity_sell_product.*
+import org.koin.androidx.viewmodel.ext.android.getViewModel
 import java.util.*
 
 class SellProductActivity : AppCompatActivity() {
@@ -21,12 +21,12 @@ class SellProductActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_sell_product)
 
-        viewModel = ViewModelProvider(this).get(ProductViewModel::class.java)
-        initView()
+        viewModel = getViewModel (clazz = ProductViewModel::class)
+        setupView()
         setupListener()
     }
 
-    private fun initView() {
+    private fun setupView() {
         product = intent.getSerializableExtra(product_detail) as Product
         val soldNumber = 1
         val calendar = Calendar.getInstance()

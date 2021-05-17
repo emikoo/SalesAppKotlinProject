@@ -4,8 +4,8 @@ import com.google.gson.annotations.SerializedName
 
 data class TokenModel (
     @SerializedName("refresh")
-    val refreshToken: String,
+    val refreshToken: String? = null,
     @SerializedName("access")
-    val accessToken: String,
-    val role_code: String
+    val accessToken: String? = null,
+    val role_code: String? = null
 )

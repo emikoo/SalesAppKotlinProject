@@ -1,12 +1,12 @@
-package com.example.salesappkotlinproject.ui.owner.bottom_nav.sales_history.view_model
+package com.example.salesappkotlinproject.ui.owner.bottom_nav.sales_history
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.example.salesappkotlinproject.data.model.Product
 import com.example.salesappkotlinproject.repository.ProductRepository
+import com.example.salesappkotlinproject.repository.ProductRepositoryImpl
 
-class SoldProductViewModel : ViewModel() {
-    private val repository = ProductRepository()
+class SoldProductViewModel(private val repository: ProductRepositoryImpl) : ViewModel() {
 
     val data: MutableLiveData<MutableList<Product>> = MutableLiveData()
     val message: MutableLiveData<String>? = MutableLiveData()

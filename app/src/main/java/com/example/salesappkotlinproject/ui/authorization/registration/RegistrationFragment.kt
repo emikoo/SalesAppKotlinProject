@@ -10,13 +10,15 @@ import android.view.ViewGroup
 import androidx.lifecycle.ViewModelProvider
 import com.example.salesappkotlinproject.R
 import com.example.salesappkotlinproject.data.model.User
+import com.example.salesappkotlinproject.helper.showToast
 import com.example.salesappkotlinproject.ui.authorization.login.LoginFragment
 import com.example.salesappkotlinproject.ui.owner.main.MainActivity
 import kotlinx.android.synthetic.main.fragment_registration.*
+import org.koin.androidx.viewmodel.ext.android.getViewModel
 
 class RegistrationFragment : Fragment() {
 
-    lateinit var view_model: UserViewModel
+    lateinit var view_model: AuthViewModel
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -29,7 +31,7 @@ class RegistrationFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        view_model = ViewModelProvider(this).get(UserViewModel::class.java)
+        view_model = getViewModel(clazz = AuthViewModel::class)
         reg_btn_login.paintFlags = Paint.UNDERLINE_TEXT_FLAG
         setupListener()
     }
@@ -41,7 +43,7 @@ class RegistrationFragment : Fragment() {
 
         reg_btn_go.setOnClickListener {
             saveData()
-//            openOwnerScreen()
+ //           openOwnerScreen()
         }
     }
 
