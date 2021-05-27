@@ -12,6 +12,7 @@
         android:layout_height="@dimen/height_search_view"
         android:layout_marginStart="@dimen/margin_search_view"
         android:layout_marginEnd="@dimen/margin_search_view"
+        android:layout_marginTop="8dp"
         android:background="@drawable/custom_search"
         android:imeOptions="actionSearch"
         app:layout_constraintEnd_toEndOf="parent"
