@@ -1,13 +1,12 @@
 package com.example.salesappkotlinproject.ui.owner.sell_product
 
 import android.app.DatePickerDialog
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.widget.DatePicker
+import androidx.appcompat.app.AppCompatActivity
 import com.example.salesappkotlinproject.R
-import com.example.salesappkotlinproject.helper.showToast
 import com.example.salesappkotlinproject.data.model.Product
 import com.example.salesappkotlinproject.data.model.SoldProduct
+import com.example.salesappkotlinproject.helper.showToast
 import com.example.salesappkotlinproject.ui.owner.bottom_nav.product_list.ProductListFragment.Companion.product_detail
 import com.example.salesappkotlinproject.ui.owner.bottom_nav.product_list.ProductViewModel
 import com.example.salesappkotlinproject.ui.owner.bottom_nav.sales_history.SoldProductViewModel
@@ -26,8 +25,8 @@ class SellProductActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_sell_product)
 
-        viewModel = getViewModel (clazz = ProductViewModel::class)
-        soldViewModel = getViewModel (clazz = SoldProductViewModel::class)
+        viewModel = getViewModel(clazz = ProductViewModel::class)
+        soldViewModel = getViewModel(clazz = SoldProductViewModel::class)
         setupView()
         setupListener()
     }
@@ -43,7 +42,7 @@ class SellProductActivity : AppCompatActivity() {
         sell_item_name.text = product.name
         sold_price.text = product.salePrice.toString()
         et_sold_number.setText(soldNumber.toString())
-        tv_date.text = "$day/${month+1}/$year"
+        tv_date.text = "$day/${month + 1}/$year"
     }
 
     private fun setupListener() {
@@ -57,8 +56,10 @@ class SellProductActivity : AppCompatActivity() {
             onBackPressed()
         }
         sell_positive.setOnClickListener {
-            saveEdits()
-            onBackPressed()
+            if (product.availableCount >= et_sold_number.text.toString().toInt()) {
+                saveEdits()
+                onBackPressed()
+            } else showToast(this, "У вас недостаточно товара")
         }
     }
 
@@ -68,33 +69,54 @@ class SellProductActivity : AppCompatActivity() {
         val month = calendar.get(Calendar.MONTH)
         val day = calendar.get(Calendar.DAY_OF_MONTH)
 
-        val dialog = DatePickerDialog(this, DatePickerDialog.OnDateSetListener{view, mYear, mMonth, mDay ->
-            val month = mMonth+1
-            tv_date.text = "$mDay/$month/$mYear"
-        }, year, month, day)
+        val dialog =
+            DatePickerDialog(this, DatePickerDialog.OnDateSetListener { view, mYear, mMonth, mDay ->
+                val month = mMonth + 1
+                tv_date.text = "$mDay/$month/$mYear"
+            }, year, month, day)
 
         dialog.show()
     }
 
     private fun saveEdits() {
-        if (tv_date.text.isNotEmpty() ){
-            val date = tv_date.text.toString()
-            val soldNumber = et_sold_number.text.toString().toInt()
-            val beforeSold = product.countSold
-            val totalSold = soldNumber + beforeSold
+        val soldNumber = et_sold_number.text.toString().toInt()
+        val beforeSold = product.countSold
+        val totalSold = soldNumber + beforeSold
 
-            val number = product.count
-            val availableNumber = number - totalSold
+        val number = product.count
+        val availableNumber = number - totalSold
 
-            var soldPrice = product.salePrice * soldNumber
+        var soldPrice = product.salePrice * soldNumber
 
-            product = Product(product.id, product.name, product.salePrice, product.costPrice, product.count,
-            availableNumber, totalSold)
-            viewModel.updateProduct(product)
+        updateProduct(availableNumber, totalSold)
+        insertSoldProduct(soldNumber, soldPrice)
+    }
 
-            soldProduct = SoldProduct(0, product.name, product.salePrice, product.costPrice, soldNumber, soldPrice, date)
-            soldViewModel.insertSoldProduct(soldProduct)
+    private fun updateProduct(availableNumber: Int, totalSold: Int) {
+        if (product.id == 0) product.id = 1
+        product = Product(
+            product.id,
+            product.name,
+            product.salePrice,
+            product.costPrice,
+            product.count,
+            availableNumber,
+            totalSold
+        )
+        viewModel.updateProduct(product)
+    }
 
-        } else showToast(this, "Заполните дату продажи")
+    private fun insertSoldProduct(soldNumber: Int, soldPrice: Int) {
+        val date = tv_date.text.toString()
+        soldProduct = SoldProduct(
+            0,
+            product.name,
+            product.salePrice,
+            product.costPrice,
+            soldNumber,
+            soldPrice,
+            date
+        )
+        soldViewModel.insertSoldProduct(soldProduct)
     }
 }
