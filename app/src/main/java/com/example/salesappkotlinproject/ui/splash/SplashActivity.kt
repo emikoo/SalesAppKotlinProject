@@ -21,14 +21,13 @@ class SplashActivity : AppCompatActivity() {
 
     private fun setupAnimationText() {
         val animation = AnimationUtils.loadAnimation(this, R.anim.fade_in)
-        splash_title.startAnimation(animation)
-        splash_subtitle.startAnimation(animation)
+        splash_activity.startAnimation(animation)
     }
 
     private fun setDelay() {
         Handler(Looper.getMainLooper()).postDelayed({
             openActivity()
-        }, 1000)
+        }, 500)
     }
 
     private fun openActivity() {

@@ -5,6 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".ui.splash.SplashActivity"
+    android:id="@+id/splash_activity"
     android:background="@color/color_main_blue">
 
     <LinearLayout
