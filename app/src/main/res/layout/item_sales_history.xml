@@ -9,12 +9,31 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <TextView
+        android:id="@+id/tv_sold_date"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginStart="@dimen/margin_16_dp"
+        style="@style/auth_et_text_style"
+        tools:text="25/03/2021"/>
+
+    <View
+        android:id="@+id/circle"
+        android:layout_width="8dp"
+        android:layout_height="8dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@id/tv_item_sales_name"
+        app:layout_constraintBottom_toBottomOf="@id/tv_item_sales_name"
+        android:background="@drawable/view_blue_circle"/>
+
+    <TextView
         android:id="@+id/tv_item_sales_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         style="@style/subtitle_semibold_style"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tv_sold_date"
+        app:layout_constraintStart_toEndOf="@id/circle"
         tools:text="Футболка ZARA"
         android:layout_marginStart="8dp"/>
 

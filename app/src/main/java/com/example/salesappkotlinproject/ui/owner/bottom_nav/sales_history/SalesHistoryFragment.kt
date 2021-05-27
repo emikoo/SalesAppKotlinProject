@@ -38,33 +38,15 @@ class SalesHistoryFragment : Fragment() {
         makeAnalytics()
     }
 
+
     private fun setupRecyclerView() {
         adapter =
             SalesHistoryAdapter()
-        rv_sales_list.layoutManager = LinearLayoutManager(requireContext())
+        val layoutManager: LinearLayoutManager = LinearLayoutManager(activity)
+        layoutManager.setReverseLayout(true)
+        layoutManager.setStackFromEnd(true);
+        rv_sales_list.setLayoutManager(layoutManager)
         rv_sales_list.adapter = adapter
-    }
-
-    private fun makeAnalytics() {
-        val productsArray = viewModel.product
-        var soldNumber = 0
-        var proceed = 0
-        var total = 0
-        for (array in productsArray) {
-            var numTotal = 0
-            numTotal = array.countSold * array.salePrice
-            total += numTotal
-
-            soldNumber += array.countSold
-
-            var numProceed = 0
-            numProceed = array.countSold * array.costPrice
-            proceed += numProceed
-
-            tv_total_som.text = total.toString()
-            tv_sales_sht.text = soldNumber.toString().toSht()
-            tv_proceed_som.text = proceed.toString().toSom()
-        }
     }
 
     private fun subscribeToLiveData() {
@@ -72,4 +54,39 @@ class SalesHistoryFragment : Fragment() {
             adapter.addItems(it)
         })
     }
+
+    override fun onResume() {
+        super.onResume()
+        viewModel.getSoldProducts()
+        makeAnalytics()
+    }
+
+    private fun makeAnalytics() {
+        val productsArray = viewModel.soldProduct
+        var soldNumber = 0
+        var total = 0
+        var costPrice = 0
+        var proceed = 0
+
+        for (item in productsArray) {
+            var numTotal = 0
+            var numCostPrice = 0
+
+            numTotal += item.salePrice * item.countSold
+            numCostPrice += item.costPrice * item.countSold
+            soldNumber += item.countSold
+
+            total += numTotal
+            costPrice += numCostPrice
+
+            proceed = total - costPrice
+//            proceed += proceed
+
+            tv_total_som.text = total.toString()
+            tv_sales_sht.text = soldNumber.toString().toSht()
+            tv_proceed_som.text = proceed.toString().toSom()
+        }
+    }
+
+
 }

@@ -57,8 +57,8 @@ class EditProductActivity : AppCompatActivity() {
 
 //        product.name = newName
 
-        product = Product(product.id, newName, price, costPrice, product.date, count, availableNumber,
-            product.sold, soldCount, product.soldDate)
+//        product = Product(product.id, newName, price, costPrice, product.date, count, availableNumber,
+//            product.sold, soldCount, product.soldDate)
 
         viewModel.updateProduct(product)
 

@@ -5,14 +5,14 @@ import androidx.room.PrimaryKey
 import java.io.Serializable
 import java.util.*
 
-@Entity(tableName = "product")
-data class Product (
+@Entity(tableName = "sold_product")
+data class SoldProduct(
     @PrimaryKey(autoGenerate = true)
-    var id: Int,
+    val id: Int,
     var name: String,
     var salePrice: Int,
     var costPrice: Int,
-    var count: Int,
-    var availableCount: Int = 0,
-    var countSold: Int = 0
-) : Serializable
+    var countSold: Int,
+    var totalSalePrice: Int? = null,
+    var soldDate: String? =  null
+    ): Serializable

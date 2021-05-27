@@ -2,16 +2,19 @@ package com.example.salesappkotlinproject.ui.owner.bottom_nav.sales_history
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import com.example.salesappkotlinproject.data.base.BaseEvent
+import com.example.salesappkotlinproject.data.base.BaseViewModel
 import com.example.salesappkotlinproject.data.model.Product
+import com.example.salesappkotlinproject.data.model.SoldProduct
 import com.example.salesappkotlinproject.repository.ProductRepository
 import com.example.salesappkotlinproject.repository.ProductRepositoryImpl
+import com.example.salesappkotlinproject.repository.SoldProductRepositoryImpl
 
-class SoldProductViewModel(private val repository: ProductRepositoryImpl) : ViewModel() {
+class SoldProductViewModel(private val repository: SoldProductRepositoryImpl) : ViewModel() {
 
-    val data: MutableLiveData<MutableList<Product>> = MutableLiveData()
+    val data: MutableLiveData<MutableList<SoldProduct>> = MutableLiveData()
     val message: MutableLiveData<String>? = MutableLiveData()
-    var products: MutableList<Product>? = mutableListOf()
-    var product: MutableList<Product> = mutableListOf()
+    var soldProduct: MutableList<SoldProduct> = mutableListOf()
 
     init {
         subscribeToData()
@@ -20,14 +23,18 @@ class SoldProductViewModel(private val repository: ProductRepositoryImpl) : View
     }
 
     fun getSoldProducts() {
-        repository.getSoldProducts()
+        repository.getSoldProduct()
+    }
+
+    fun insertSoldProduct(data: SoldProduct) {
+        repository.insertSoldProduct(data)
     }
 
     private fun subscribeToData() {
         repository.data.observeForever {
-            products = data.value
+            it?.let { result -> data.value = result}
+            data.value?.let { data -> soldProduct = data }
             data.value = it
-            product = it
         }
     }
 

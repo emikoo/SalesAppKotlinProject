@@ -8,12 +8,13 @@ import com.example.salesappkotlinproject.R
 import com.example.salesappkotlinproject.helper.toSht
 import com.example.salesappkotlinproject.helper.toSom
 import com.example.salesappkotlinproject.data.model.Product
+import com.example.salesappkotlinproject.data.model.SoldProduct
 import kotlinx.android.synthetic.main.item_empty_product_list.view.*
 import kotlinx.android.synthetic.main.item_sales_history.view.*
 
 class SalesHistoryAdapter: RecyclerView.Adapter<BaseSalesViewHolder>() {
 
-    private var items = mutableListOf<Product>()
+    private var items = mutableListOf<SoldProduct>()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): BaseSalesViewHolder {
         return if (viewType == VIEW_TYPE_DATA) SalesHistoryViewHolder(
@@ -49,8 +50,8 @@ class SalesHistoryAdapter: RecyclerView.Adapter<BaseSalesViewHolder>() {
         holder.bind()
     }
 
-    fun addItems(item: MutableList<Product>) {
-        items.addAll(item)
+    fun addItems(item: MutableList<SoldProduct>) {
+        items = item
         notifyDataSetChanged()
     }
 
@@ -63,10 +64,11 @@ class SalesHistoryAdapter: RecyclerView.Adapter<BaseSalesViewHolder>() {
 open class BaseSalesViewHolder(itemView: View): RecyclerView.ViewHolder(itemView){}
 
 class SalesHistoryViewHolder(itemView: View): BaseSalesViewHolder(itemView){
-    fun bind(item: Product) {
+    fun bind(item: SoldProduct) {
         itemView.tv_item_sales_name.text = item.name
         itemView.tv_item_sales_sold_number.text = item.countSold.toString().toSht()
-        itemView.tv_item_sales_price.text = item.salePrice.toString().toSom()
+        itemView.tv_item_sales_price.text = item.totalSalePrice.toString().toSom()
+        itemView.tv_sold_date.text = item.soldDate
     }
 }
 

@@ -48,7 +48,8 @@ class ProductListFragment : Fragment(), ClickListener {
     }
 
     private fun setupRecyclerView() {
-        adapter = ProductListAdapter(this)
+        adapter =
+            ProductListAdapter(this)
         rv_product_list.layoutManager = LinearLayoutManager(requireContext())
         rv_product_list.adapter = adapter
     }
@@ -113,17 +114,13 @@ class ProductListFragment : Fragment(), ClickListener {
         nameEditText: EditText, priceEditText: EditText,
         costPriceEdiText: EditText, numberEditText: EditText, dialog: AlertDialog
     ) {
-        val calendar: Calendar = GregorianCalendar()
-        val date: Date = calendar.time
         val product = Product(
             0,
             nameEditText.text.toString(),
             priceEditText.text.toString().toInt(),
             costPriceEdiText.text.toString().toInt(),
-            date,
             numberEditText.text.toString().toInt(),
-            numberEditText.text.toString().toInt()
-        )
+            numberEditText.text.toString().toInt())
         dialog.dismiss()
         adapter.addItem(product)
         viewModel.insertProduct(product)

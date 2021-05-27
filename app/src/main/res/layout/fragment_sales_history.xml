@@ -13,7 +13,8 @@
         tools:listitem="@layout/item_sales_history"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintBottom_toTopOf="@id/blue_line"/>
+        app:layout_constraintBottom_toTopOf="@id/blue_line"
+        android:layout_marginBottom="8dp"/>
 
     <View
         android:id="@+id/blue_line"

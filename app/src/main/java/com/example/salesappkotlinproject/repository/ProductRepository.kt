@@ -10,7 +10,6 @@ interface ProductRepository{
     fun updateProduct(data: Product)
     fun restoreProduct(data: Product)
     fun deleteProduct(data: Product)
-    fun getSoldProducts()
 }
 
 class ProductRepositoryImpl(private val database: ProductDao): ProductRepository {
@@ -36,9 +35,5 @@ class ProductRepositoryImpl(private val database: ProductDao): ProductRepository
 
     override fun deleteProduct(data: Product) {
         database.deleteProduct(data)
-    }
-
-    override fun getSoldProducts(){
-        data.value = database.getSoldProducts()
     }
 }

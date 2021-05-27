@@ -2,6 +2,7 @@ package com.example.salesappkotlinproject.data.local
 
 import androidx.room.*
 import com.example.salesappkotlinproject.data.model.Product
+import com.example.salesappkotlinproject.data.model.SoldProduct
 
 @Dao
 interface ProductDao {
@@ -20,6 +21,9 @@ interface ProductDao {
     @Delete
     fun deleteProduct(data: Product)
 
-    @Query("SELECT * FROM product WHERE sold == 1")
-    fun getSoldProducts(): MutableList<Product>
+    @Insert(onConflict = OnConflictStrategy.IGNORE)
+    fun insertSoldProduct(data: SoldProduct)
+
+    @Query("SELECT * FROM sold_product")
+    fun getSoldProducts(): MutableList<SoldProduct>
 }

@@ -3,13 +3,12 @@ package com.example.salesappkotlinproject.ui.owner.main
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import com.example.salesappkotlinproject.R
-import com.example.salesappkotlinproject.data.common.BaseActivity
 import com.example.salesappkotlinproject.ui.owner.main.adapter.MainViewPagerAdapter
 import com.example.salesappkotlinproject.ui.owner.bottom_nav.product_list.ProductListFragment
 import com.example.salesappkotlinproject.ui.owner.bottom_nav.sales_history.SalesHistoryFragment
 import kotlinx.android.synthetic.main.activity_main.*
 
-class MainActivity : BaseActivity() {
+class MainOwnerActivity : AppCompatActivity() {
 
     private lateinit var adapter: MainViewPagerAdapter
 
@@ -17,7 +16,6 @@ class MainActivity : BaseActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        createDrawer()
         setupViewPager()
         setupBottomNavigation()
     }
@@ -36,9 +34,11 @@ class MainActivity : BaseActivity() {
             when (it.itemId) {
                 R.id.sales_history -> {
                     view_pager.setCurrentItem(0, false)
+                    main_title.text = "История продаж"
                 }
                 R.id.product_list -> {
                     view_pager.setCurrentItem(1, false)
+                    main_title.text = "Склад"
                 }
             }
             true
