@@ -18,13 +18,16 @@
 
     <TextView
         android:id="@+id/detail_item_name"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:enabled="true"
         android:layout_marginEnd="4dp"
-        android:maxLines="1"
         android:ellipsize="end"
+        android:maxLines="1"
+        android:maxLength="20"
         app:layout_constraintStart_toEndOf="@id/btn_left_detail"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_goneMarginEnd="16dp"
         app:layout_constraintTop_toTopOf="@id/btn_left_detail"
         app:layout_constraintBottom_toBottomOf="@id/btn_left_detail"
         tools:text="T-Shirt Zara"
