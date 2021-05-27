@@ -30,6 +30,10 @@ class SoldProductViewModel(private val repository: SoldProductRepositoryImpl) : 
         repository.insertSoldProduct(data)
     }
 
+    fun deleteSoldProductsList() {
+        repository.deleteSoldProductsList(soldProduct)
+    }
+
     private fun subscribeToData() {
         repository.data.observeForever {
             it?.let { result -> data.value = result}

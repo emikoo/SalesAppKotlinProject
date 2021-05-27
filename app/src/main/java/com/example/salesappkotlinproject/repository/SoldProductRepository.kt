@@ -7,6 +7,7 @@ import com.example.salesappkotlinproject.data.model.SoldProduct
 interface SoldProductRepository {
     fun insertSoldProduct(data: SoldProduct)
     fun getSoldProduct()
+    fun deleteSoldProductsList(list: MutableList<SoldProduct>)
 }
 
 class SoldProductRepositoryImpl(private val database: ProductDao): SoldProductRepository {
@@ -22,5 +23,8 @@ class SoldProductRepositoryImpl(private val database: ProductDao): SoldProductRe
         data.value = database.getSoldProducts()
     }
 
+    override fun deleteSoldProductsList(list: MutableList<SoldProduct>) {
+        database.deleteSoldProductsList(list)
+    }
 }
 

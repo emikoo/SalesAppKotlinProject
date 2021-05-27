@@ -55,10 +55,10 @@ class EditProductActivity : AppCompatActivity() {
         val availableNumber = count - soldCount
         val costPrice = edit_cost_price.text.toString().toInt()
 
-//        product.name = newName
+        product.name = newName
 
-//        product = Product(product.id, newName, price, costPrice, product.date, count, availableNumber,
-//            product.sold, soldCount, product.soldDate)
+        product = Product(product.id, newName, price, costPrice, count, availableNumber,
+            soldCount)
 
         viewModel.updateProduct(product)
 

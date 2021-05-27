@@ -59,4 +59,5 @@
     <string name="who_are_you">Кем вы являетесь ?</string>
     <string name="back">Назад</string>
     <string name="analytics">Аналитика</string>
+    <string name="reset_sale_history">Вы точно хотите\nстереть историю продаж?</string>
 </resources>

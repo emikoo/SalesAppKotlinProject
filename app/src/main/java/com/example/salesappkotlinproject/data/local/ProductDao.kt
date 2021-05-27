@@ -26,4 +26,7 @@ interface ProductDao {
 
     @Query("SELECT * FROM sold_product")
     fun getSoldProducts(): MutableList<SoldProduct>
+
+    @Delete
+    fun deleteSoldProductsList(list: MutableList<SoldProduct>)
 }
