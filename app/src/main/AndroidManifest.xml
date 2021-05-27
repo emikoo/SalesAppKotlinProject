@@ -12,19 +12,19 @@
         android:roundIcon="@mipmap/ic_main_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".ui.splash.SplashActivity"></activity>
-        <activity android:name=".ui.authorization.AuthorizationActivity" />
-        <activity android:name=".ui.authorization.MainAuthorizationActivity" />
-        <activity android:name=".ui.owner.edit_product.EditProductActivity" />
-        <activity android:name=".ui.owner.sell_product.SellProductActivity" />
-        <activity android:name=".ui.owner.detail_product.DetailProductActivity" />
-        <activity android:name=".ui.owner.main.MainOwnerActivity">
+        <activity android:name=".ui.splash.SplashActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".ui.authorization.AuthorizationActivity" />
+        <activity android:name=".ui.authorization.MainAuthorizationActivity" />
+        <activity android:name=".ui.owner.edit_product.EditProductActivity" />
+        <activity android:name=".ui.owner.sell_product.SellProductActivity" />
+        <activity android:name=".ui.owner.detail_product.DetailProductActivity" />
+        <activity android:name=".ui.owner.main.MainOwnerActivity"></activity>
     </application>
 
 </manifest>

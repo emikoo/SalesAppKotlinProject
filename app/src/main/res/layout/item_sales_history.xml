@@ -35,6 +35,8 @@
         app:layout_constraintTop_toBottomOf="@id/tv_sold_date"
         app:layout_constraintStart_toEndOf="@id/circle"
         tools:text="Футболка ZARA"
+        android:maxLength="13"
+        android:ellipsize="end"
         android:layout_marginStart="8dp"/>
 
     <TextView
