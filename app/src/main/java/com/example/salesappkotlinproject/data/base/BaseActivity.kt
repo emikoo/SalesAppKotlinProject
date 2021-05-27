@@ -1,6 +1,5 @@
-package com.example.salesappkotlinproject.data.common
+package com.example.salesappkotlinproject.data.base
 
-import android.widget.Toolbar
 import androidx.appcompat.app.AppCompatActivity
 import com.example.salesappkotlinproject.R
 import com.mikepenz.materialdrawer.AccountHeader
@@ -8,7 +7,6 @@ import com.mikepenz.materialdrawer.AccountHeaderBuilder
 import com.mikepenz.materialdrawer.DrawerBuilder
 import com.mikepenz.materialdrawer.model.PrimaryDrawerItem
 import com.mikepenz.materialdrawer.model.ProfileDrawerItem
-import kotlinx.android.synthetic.main.activity_main.*
 
 abstract class BaseActivity : AppCompatActivity() {
 
@@ -19,7 +17,7 @@ abstract class BaseActivity : AppCompatActivity() {
 
         DrawerBuilder()
             .withActivity(this)
-            .withToolbar(main_toolbar)
+//            .withToolbar(main_toolbar)
             .withSelectedItem(-1)
             .withOnDrawerNavigationListener {
                 onBackPressed()

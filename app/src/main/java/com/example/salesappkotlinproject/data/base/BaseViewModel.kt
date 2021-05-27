@@ -1,4 +1,4 @@
-package com.example.salesappkotlinproject.data.common
+package com.example.salesappkotlinproject.data.base
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel

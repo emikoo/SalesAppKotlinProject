@@ -13,9 +13,35 @@ import retrofit2.Response
 interface UserRepository {
     fun regUser(user: User): MutableLiveData<ResponseResult<User>>
     fun login(username: String, password: String): MutableLiveData<ResponseResult<TokenModel>>
+    fun refreshToken(): MutableLiveData<ResponseResult<String>>
 }
 
-class UserRepositoryImpl(private val api: AuthApi) : UserRepository {
+class UserRepositoryImpl(private val api: AuthApi, private val preferences: PrefsHelper) : UserRepository {
+
+    override fun refreshToken(): MutableLiveData<ResponseResult<String>> {
+        val result = MutableLiveData<ResponseResult<String>>(ResponseResult.loading())
+        api.refreshToken(TokenModel(refreshToken = preferences.getRefreshToken()))
+            .enqueue(object : Callback<TokenModel> {
+                override fun onFailure(call: Call<TokenModel>, t: Throwable) {}
+
+                override fun onResponse(
+                    call: Call<TokenModel>,
+                    response: retrofit2.Response<TokenModel>
+                ) {
+                    if (response.isSuccessful && response.body() != null) {
+
+                        val token = response.body()?.accessToken ?: ""
+                        token.let { preferences.saveToken(it, preferences.getRefreshToken()) }
+                        result.value = ResponseResult.success(preferences.getRefreshToken())
+                    } else {
+                        result.value = ResponseResult.error(response.message())
+                    }
+                }
+            })
+        return result
+    }
+
+
     override fun regUser(user: User): MutableLiveData<ResponseResult<User>> {
         val data: MutableLiveData<ResponseResult<User>> = MutableLiveData(ResponseResult.loading())
         api.regUser(user).enqueue(object : Callback<User> {
@@ -30,12 +56,16 @@ class UserRepositoryImpl(private val api: AuthApi) : UserRepository {
         return data
     }
 
-    override fun login(username: String, password: String): MutableLiveData<ResponseResult<TokenModel>> {
+    override fun login(
+        username: String,
+        password: String
+    ): MutableLiveData<ResponseResult<TokenModel>> {
         val map = mapOf(
             "username" to username,
             "password" to password
         )
-        val data: MutableLiveData<ResponseResult<TokenModel>> = MutableLiveData(ResponseResult.loading())
+        val data: MutableLiveData<ResponseResult<TokenModel>> =
+            MutableLiveData(ResponseResult.loading())
         api.login(map).enqueue(object : Callback<TokenModel> {
             override fun onFailure(call: Call<TokenModel>, t: Throwable) {
                 data.value = ResponseResult.error(t.message)
@@ -43,8 +73,8 @@ class UserRepositoryImpl(private val api: AuthApi) : UserRepository {
 
             override fun onResponse(call: Call<TokenModel>, response: Response<TokenModel>) {
                 when (response.code()) {
-                    200 -> ResponseResult.success(response.body())
-                    401 -> ResponseResult.error("No active account found with the given credentials")
+                    200 -> data.value = ResponseResult.success(response.body())
+                    401 -> data.value = ResponseResult.error("No active account found with the given credentials")
                 }
             }
 

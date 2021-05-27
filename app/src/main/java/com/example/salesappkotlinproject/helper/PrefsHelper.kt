@@ -3,15 +3,15 @@ package com.example.salesappkotlinproject.helper
 import android.content.Context
 import android.content.SharedPreferences
 
-object PrefsHelper {
+class PrefsHelper(private val context: Context) {
 
-    private const val PREFS_NAME = "SalesApp"
-    private const val TOKEN = "TOKEN"
-    private const val REFRESH_TOKEN = "REFRESH_TOKEN"
-    private lateinit var prefs: SharedPreferences
+    private val PREFS_NAME = "SalesApp"
+    private val TOKEN = "TOKEN"
+    private val REFRESH_TOKEN = "REFRESH_TOKEN"
+    private var prefs: SharedPreferences = context.getSharedPreferences(PREFS_NAME, Context.MODE_PRIVATE)
 
-    fun init(context: Context) {
-        prefs = context.getSharedPreferences(PREFS_NAME, Context.MODE_PRIVATE)
+    init {
+        instance = this
     }
 
     fun saveToken(token: String?, refreshToken: String?) {
@@ -25,5 +25,9 @@ object PrefsHelper {
 
     fun getRefreshToken(): String {
         return  prefs.getString(REFRESH_TOKEN, "") ?: ""
+    }
+
+    companion object {
+        lateinit var instance: PrefsHelper
     }
 }

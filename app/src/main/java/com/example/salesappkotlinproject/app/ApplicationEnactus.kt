@@ -1,7 +1,6 @@
 package com.example.salesappkotlinproject.app
 
 import android.app.Application
-import com.example.salesappkotlinproject.data.local.AppDatabase
 import com.example.salesappkotlinproject.di.*
 import org.koin.android.ext.koin.androidContext
 import org.koin.android.ext.koin.androidLogger
@@ -24,11 +23,11 @@ class ApplicationEnactus : Application() {
     private val loadKoinModules by lazy {
         loadKoinModules(
             listOf(
+                networkRepository,
+                repositoryModule,
                 fragmentModule,
                 viewModelModule,
-                repositoryModule,
-                databaseModule,
-                networkRepository
+                databaseModule
             )
         )
     }

@@ -17,8 +17,6 @@ fun provideRetrofit(okHttpClient: OkHttpClient) = Retrofit.Builder()
     .addConverterFactory(GsonConverterFactory.create())
     .build()
 
-fun provideUserApi(retrofit: Retrofit) = retrofit.create(AuthApi::class.java)
-
 fun provideOkHttpClient(
     httpLoggingInterceptor: HttpLoggingInterceptor,
     tokenAuthenticator: TokenAuthenticator
@@ -36,9 +34,17 @@ fun provideHttpLoginingInterceptor(): HttpLoggingInterceptor {
     }
 }
 
-class HeadersInterceptor : Interceptor {
+fun provideAuthApi(retrofit: Retrofit) = retrofit.create(AuthApi::class.java)
+
+fun provideTokenAuthenticator(preferences: PrefsHelper)
+        = TokenAuthenticator(preferences)
+
+fun provideHeadersInterceptor(preferences: PrefsHelper)
+        = HeadersInterceptor(preferences)
+
+class HeadersInterceptor(private val preferences: PrefsHelper) : Interceptor {
     override fun intercept(chain: Interceptor.Chain): Response {
-        val token = PrefsHelper.getToken()
+        val token = preferences.getToken()
         val request = chain.request().newBuilder()
         if (token.isNotEmpty())
             request.addHeader("Authorization", "Bearer $token")
@@ -47,25 +53,67 @@ class HeadersInterceptor : Interceptor {
     }
 }
 
-
 //Проблемный класс с вызовом refreshToken
-class TokenAuthenticator(private val authApi: AuthApi, private val prefs: PrefsHelper) : Authenticator {
-    override fun authenticate(route: Route?, res: Response): Request? {
-        if (res.code == 401) {
-            authApi.refreshToken(TokenModel(refreshToken = prefs.getRefreshToken())).enqueue(object : Callback<TokenModel> {
-                override fun onFailure(call: Call<TokenModel>, t: Throwable) {}
+private fun provideAuthApi(): AuthApi {
+    return Retrofit.Builder()
+        .baseUrl(BASE_URL)
+        .client(
+            OkHttpClient.Builder()
+                .addInterceptor(provideHttpLoginingInterceptor()).build()
+        )
+        .addConverterFactory(GsonConverterFactory.create())
+        .build()
+        .create(AuthApi::class.java)
+}
 
-                override fun onResponse(call: Call<TokenModel>, response: retrofit2.Response<TokenModel>) {
+class TokenAuthenticator(
+    private val preferences: PrefsHelper
+    ) : Authenticator {
+
+    val api = provideAuthApi()
+    private val MAX_COUNT_OF_FALL_RESPONSE = 3
+    override fun authenticate(route: Route?, response: Response): Request? {
+        if (countOfFailedResponse(response) >= MAX_COUNT_OF_FALL_RESPONSE) {
+            return null
+        }
+
+        synchronized(this) {
+            val result = refreshToken(preferences)
+            if (!result) return null
+        }
+
+        return response.request
+            .newBuilder()
+            .addHeader("Authorization", "Bearer ${preferences.getToken()}")
+            .build()
+    }
+
+    private fun refreshToken(preferences: PrefsHelper): Boolean {
+        var isUpdatedToken = false
+        api.refreshToken(TokenModel(refreshToken = preferences.getRefreshToken()))
+            .enqueue(object : Callback<TokenModel> {
+                override fun onFailure(call: Call<TokenModel>, t: Throwable) { }
+
+                override fun onResponse(
+                    call: Call<TokenModel>,
+                    response: retrofit2.Response<TokenModel>
+                ) {
                     if (response.isSuccessful && response.body() != null) {
+
                         val token = response.body()?.accessToken ?: ""
-                        token.let { prefs.saveToken(it, prefs.getRefreshToken()) }
-//                        res.request.newBuilder()
-//                            .addHeader("Authorization", "Bearer $token")
-//                            .build()
+                        token.let { preferences.saveToken(it, preferences.getRefreshToken()) }
+                        isUpdatedToken = true
                     }
                 }
             })
+        return isUpdatedToken
+    }
+
+    private fun countOfFailedResponse(response: Response): Int {
+        var count = 1
+        while (response.priorResponse != null) {
+            count += 1
         }
-        return null
+        return count
     }
 }

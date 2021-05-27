@@ -1,16 +1,15 @@
-package com.example.salesappkotlinproject.ui.authorization.registration
+package com.example.salesappkotlinproject.ui.authorization
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
-import com.example.salesappkotlinproject.data.common.BaseViewModel
+import com.example.salesappkotlinproject.data.base.BaseViewModel
 import com.example.salesappkotlinproject.data.model.User
 import com.example.salesappkotlinproject.data.network.client.ResponseResultStatus
 import com.example.salesappkotlinproject.helper.PrefsHelper
 import com.example.salesappkotlinproject.repository.UserRepository
-import com.example.salesappkotlinproject.repository.UserRepositoryImpl
 import kotlinx.coroutines.launch
 
-class AuthViewModel(private val repository: UserRepository) : BaseViewModel() {
+class AuthViewModel(private val repository: UserRepository, private val preferences: PrefsHelper) : BaseViewModel() {
 
     val actionNewScreen = MutableLiveData<Boolean>()
     val error = MutableLiveData<String>()
@@ -29,9 +28,13 @@ class AuthViewModel(private val repository: UserRepository) : BaseViewModel() {
                 .observeForever {
                     when (it.status) {
                         ResponseResultStatus.SUCCESS -> {
-                            PrefsHelper.saveToken(it?.result?.accessToken, it?.result?.refreshToken)
+                            preferences.saveToken(it?.result?.accessToken, it?.result?.refreshToken)
+                            actionNewScreen.value = true
                         }
-                        ResponseResultStatus.ERROR -> error.value = it.message
+                        ResponseResultStatus.ERROR ->{
+                            error.value = it.message
+                            actionNewScreen.value = false
+                        }
                     }
                 }
         }

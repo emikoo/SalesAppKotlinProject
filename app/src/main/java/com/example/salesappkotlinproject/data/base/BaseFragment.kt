@@ -1,4 +1,4 @@
-package com.example.salesappkotlinproject.base
+package com.example.salesappkotlinproject.data.base
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -11,7 +11,7 @@ import kotlin.reflect.KClass
 abstract class BaseFragment<VM : BaseViewModel>(
     private val layoutId: Int,
     private val clazz: KClass<VM>
-): Fragment() {
+) : Fragment() {
 
     lateinit var viewModel: VM
 
@@ -25,9 +25,9 @@ abstract class BaseFragment<VM : BaseViewModel>(
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-            viewModel = getViewModel(clazz = clazz)
-            setupViews()
-            subscribeToLiveData()
+        viewModel = getViewModel(clazz = clazz)
+        setupViews()
+        subscribeToLiveData()
     }
 
     abstract fun setupViews()

@@ -6,5 +6,5 @@ data class User(
     var username: String? = null,
     var password: String? = null,
     @SerializedName("is_owner")
-    var isOwner: Boolean = false
+    var isOwner: Boolean = true
 )

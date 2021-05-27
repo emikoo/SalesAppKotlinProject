@@ -7,12 +7,12 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.Observer
 import com.example.salesappkotlinproject.R
 import com.example.salesappkotlinproject.data.model.User
-import com.example.salesappkotlinproject.helper.showToast
+import com.example.salesappkotlinproject.ui.authorization.AuthViewModel
 import com.example.salesappkotlinproject.ui.authorization.login.LoginFragment
-import com.example.salesappkotlinproject.ui.owner.main.MainActivity
+import com.example.salesappkotlinproject.ui.owner.main.MainOwnerActivity
 import kotlinx.android.synthetic.main.fragment_registration.*
 import org.koin.androidx.viewmodel.ext.android.getViewModel
 
@@ -54,10 +54,5 @@ class RegistrationFragment : Fragment() {
             val user = User(username, password, true)
             view_model.regUser(user)
         }
-    }
-
-    private fun openOwnerScreen() {
-        val intent = Intent(requireContext(), MainActivity::class.java)
-        startActivity(intent)
     }
 }

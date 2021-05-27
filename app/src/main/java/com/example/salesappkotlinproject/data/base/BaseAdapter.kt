@@ -1,4 +1,4 @@
-package com.example.salesappkotlinproject.base
+package com.example.salesappkotlinproject.data.base
 
 import android.view.View
 import androidx.recyclerview.widget.RecyclerView

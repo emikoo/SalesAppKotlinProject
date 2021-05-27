@@ -4,13 +4,13 @@ import androidx.room.Room
 import com.example.notesapp.data.network.client.*
 import com.example.salesappkotlinproject.data.local.AppDatabase
 import com.example.salesappkotlinproject.data.local.DATABASE_NAME
-import com.example.salesappkotlinproject.data.network.api.AuthApi
 import com.example.salesappkotlinproject.helper.PrefsHelper
 import com.example.salesappkotlinproject.repository.ProductRepositoryImpl
+import com.example.salesappkotlinproject.repository.SoldProductRepositoryImpl
 import com.example.salesappkotlinproject.repository.UserRepository
 import com.example.salesappkotlinproject.repository.UserRepositoryImpl
 import com.example.salesappkotlinproject.ui.authorization.login.LoginFragment
-import com.example.salesappkotlinproject.ui.authorization.registration.AuthViewModel
+import com.example.salesappkotlinproject.ui.authorization.AuthViewModel
 import com.example.salesappkotlinproject.ui.authorization.registration.CheckPersonRegistrationFragment
 import com.example.salesappkotlinproject.ui.authorization.registration.RegistrationFragment
 import com.example.salesappkotlinproject.ui.owner.bottom_nav.product_list.ProductListFragment
@@ -21,6 +21,7 @@ import org.koin.android.ext.koin.androidContext
 import org.koin.androidx.fragment.dsl.fragment
 import org.koin.androidx.viewmodel.dsl.viewModel
 import org.koin.dsl.module
+
 
 val fragmentModule = module {
     fragment { ProductListFragment() }
@@ -33,12 +34,18 @@ val fragmentModule = module {
 val viewModelModule = module {
     viewModel { ProductViewModel(get()) }
     viewModel { SoldProductViewModel(get()) }
-    viewModel { AuthViewModel(get()) }
+    viewModel {
+        AuthViewModel(
+            get(),
+            get()
+        )
+    }
 }
 
 val repositoryModule = module {
     factory { ProductRepositoryImpl(get()) }
-    factory<UserRepository> { UserRepositoryImpl(get()) }
+    factory { SoldProductRepositoryImpl(get()) }
+    factory<UserRepository> { UserRepositoryImpl(get(), get()) }
 }
 
 val databaseModule = module {
@@ -59,9 +66,8 @@ val networkRepository = module {
     single { provideRetrofit(get()) }
     single { provideOkHttpClient(get(), get()) }
     single { provideHttpLoginingInterceptor() }
-    single { provideUserApi(get()) }
-    single { TokenAuthenticator(get(), get()) }
-    single { HeadersInterceptor() }
-    single { PrefsHelper.init(androidContext()) }
-
+    single { provideTokenAuthenticator(get()) }
+    single { provideHeadersInterceptor(get()) }
+    single { provideAuthApi(get()) }
+    single { PrefsHelper(androidContext()) }
 }

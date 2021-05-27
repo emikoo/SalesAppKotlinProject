@@ -13,17 +13,16 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity android:name=".ui.authorization.AuthorizationActivity"></activity>
-        <activity android:name=".ui.authorization.SplashActivity">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
+        <activity android:name=".ui.authorization.MainAuthorizationActivity"></activity>
         <activity android:name="com.example.salesappkotlinproject.ui.owner.edit_product.EditProductActivity" />
         <activity android:name="com.example.salesappkotlinproject.ui.owner.sell_product.SellProductActivity" />
         <activity android:name="com.example.salesappkotlinproject.ui.owner.detail_product.DetailProductActivity" />
-        <activity android:name="com.example.salesappkotlinproject.ui.owner.main.MainActivity" />
+        <activity android:name="com.example.salesappkotlinproject.ui.owner.main.MainOwnerActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
     </application>
 
 </manifest>

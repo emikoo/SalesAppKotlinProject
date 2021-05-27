@@ -4,27 +4,39 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.owner.main.MainActivity">
+    tools:context=".ui.owner.main.MainOwnerActivity">
 
-    <androidx.appcompat.widget.Toolbar
-        android:id="@+id/main_toolbar"
+<!--    <androidx.appcompat.widget.Toolbar-->
+<!--        android:id="@+id/main_toolbar"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="52dp"-->
+<!--        android:gravity="center"-->
+<!--        app:title="@string/sales_history"-->
+<!--        style="@style/title_style"-->
+<!--        app:titleTextColor="@color/color_white"-->
+<!--        android:background="@color/color_main_blue"-->
+<!--        app:layout_constraintStart_toStartOf="parent"-->
+<!--        app:layout_constraintTop_toTopOf="parent"/>-->
+
+    <TextView
+        android:id="@+id/main_title"
         android:layout_width="match_parent"
         android:layout_height="52dp"
-        android:gravity="center"
-        app:title="@string/sales_history"
-        app:menu="@menu/menu_main_toolbar"
         style="@style/title_style"
-        app:titleTextColor="@color/color_white"
+        android:text="@string/sales_history"
+        android:textColor="@color/color_white"
         android:background="@color/color_main_blue"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"/>
+        android:gravity="center"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"/>
 
     <androidx.viewpager2.widget.ViewPager2
         android:id="@+id/view_pager"
         android:layout_width="match_parent"
         android:layout_height="0dp"
+        android:layout_margin="8dp"
         app:layout_constraintBottom_toTopOf="@id/bottom_navigation"
-        app:layout_constraintTop_toBottomOf="@id/main_toolbar" />
+        app:layout_constraintTop_toBottomOf="@id/main_title" />
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/bottom_navigation"

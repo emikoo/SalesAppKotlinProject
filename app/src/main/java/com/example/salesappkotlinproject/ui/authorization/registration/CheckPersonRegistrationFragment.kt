@@ -8,7 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import com.example.salesappkotlinproject.R
 import com.example.salesappkotlinproject.helper.showToast
-import com.example.salesappkotlinproject.ui.authorization.SplashActivity
+import com.example.salesappkotlinproject.ui.authorization.MainAuthorizationActivity
 import kotlinx.android.synthetic.main.fragment_check_owner.*
 
 class CheckPersonRegistrationFragment : Fragment() {
@@ -32,9 +32,11 @@ class CheckPersonRegistrationFragment : Fragment() {
             childFragmentManager.beginTransaction().replace(R.id.check_owner_card_view, RegistrationFragment()).commit()
         }
 
+        check_owner_btn_back.setOnClickListener { activity?.onBackPressed() }
+
         btn_seller.setOnClickListener {
             showToast(requireContext(), "Только владельцы могут регистрироваться")
-            val intent = Intent(requireContext(), SplashActivity::class.java)
+            val intent = Intent(requireContext(), MainAuthorizationActivity::class.java)
             startActivity(intent)
         }
     }

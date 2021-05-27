@@ -10,9 +10,9 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.lifecycle.Observer
 import com.example.salesappkotlinproject.R
-import com.example.salesappkotlinproject.ui.authorization.registration.AuthViewModel
+import com.example.salesappkotlinproject.ui.authorization.AuthViewModel
 import com.example.salesappkotlinproject.ui.authorization.registration.RegistrationFragment
-import com.example.salesappkotlinproject.ui.owner.main.MainActivity
+import com.example.salesappkotlinproject.ui.owner.main.MainOwnerActivity
 import kotlinx.android.synthetic.main.fragment_login.*
 import org.koin.androidx.viewmodel.ext.android.getViewModel
 
@@ -34,6 +34,7 @@ class LoginFragment : Fragment() {
         viewModel = getViewModel(clazz = AuthViewModel::class)
         login_btn_registration.paintFlags = Paint.UNDERLINE_TEXT_FLAG
         setupListener()
+
         setupViewModel()
     }
 
@@ -52,7 +53,8 @@ class LoginFragment : Fragment() {
 
     private fun setupViewModel() {
         viewModel.actionNewScreen.observe(requireActivity(), Observer{
-            startActivity(Intent(requireContext(), MainActivity::class.java))
+            if (it == true) startActivity(Intent(requireContext(), MainOwnerActivity::class.java))
+            activity?.finish()
         })
 
         viewModel.error.observe(requireActivity(), Observer{
