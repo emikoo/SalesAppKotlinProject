@@ -7,6 +7,31 @@
     tools:context=".ui.splash.SplashActivity"
     android:background="@color/color_main_blue">
 
+    <LinearLayout
+        android:id="@+id/splash_it_academy"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:id="@+id/splash_icon_it_academy"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:background="@mipmap/ic_splash_round"/>
+
+        <TextView
+            android:id="@+id/splash_title_it_academy"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            style="@style/subtitle_bold_style"
+            android:text="IT Academy"
+            android:textColor="@color/color_white"/>
+    </LinearLayout>
+
     <TextView
         android:id="@+id/splash_title"
         style="@style/auth_title_style"

@@ -15,7 +15,7 @@
     <dimen name="radius_top_bottom_nav">20dp</dimen>
 
     <dimen name="auth_title_size">36sp</dimen>
-    <dimen name="auth_subtitle_size">14sp</dimen>
+    <dimen name="auth_subtitle_size">16sp</dimen>
     <dimen name="reg_et_text_size">16sp</dimen>
     <dimen name="title_size">24sp</dimen>
     <dimen name="subtitle_size">18dp</dimen>
