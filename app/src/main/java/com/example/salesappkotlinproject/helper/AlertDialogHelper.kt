@@ -3,13 +3,9 @@ package com.example.salesappkotlinproject.helper
 import android.app.AlertDialog
 import android.content.Context
 import android.view.View
-import android.widget.Button
-import android.widget.EditText
 import androidx.fragment.app.Fragment
 import com.example.salesappkotlinproject.R
 import kotlinx.android.synthetic.main.alert_sell.*
-import java.util.*
-import java.util.function.Function
 
 fun showSellingAlertDialog(
     context: Context,

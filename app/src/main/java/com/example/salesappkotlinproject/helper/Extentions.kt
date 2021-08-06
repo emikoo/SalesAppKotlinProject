@@ -1,7 +1,6 @@
 package com.example.salesappkotlinproject.helper
 
 import android.widget.EditText
-import com.example.salesappkotlinproject.R
 
 fun String.toSom() = "$this сом"
 fun String.toSht() = "$this шт."
