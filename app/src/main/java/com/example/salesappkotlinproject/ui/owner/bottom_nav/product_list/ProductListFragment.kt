@@ -1,5 +1,6 @@
 package com.example.salesappkotlinproject.ui.owner.bottom_nav.product_list
 
+import android.app.ActivityOptions
 import android.app.AlertDialog
 import android.content.Context
 import android.content.Intent
@@ -18,7 +19,9 @@ import com.example.salesappkotlinproject.R
 import com.example.salesappkotlinproject.data.model.Product
 import com.example.salesappkotlinproject.helper.*
 import com.example.salesappkotlinproject.ui.owner.detail_product.DetailProductActivity
+import com.example.salesappkotlinproject.ui.owner.detail_product.DetailProductBottomSheet
 import com.example.salesappkotlinproject.ui.owner.sell_product.SellProductActivity
+import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import kotlinx.android.synthetic.main.fragment_product_list.*
 import org.koin.androidx.viewmodel.ext.android.getViewModel
 import java.util.*
@@ -46,17 +49,17 @@ class ProductListFragment : Fragment(), ClickListener {
         searchProductAction()
     }
 
+    private fun subscribeToLiveData() {
+        viewModel.data.observe(viewLifecycleOwner, androidx.lifecycle.Observer {
+            adapter.addItems(it)
+        })
+    }
+
     private fun setupRecyclerView() {
         adapter =
             ProductListAdapter(this)
         rv_product_list.layoutManager = LinearLayoutManager(requireContext())
         rv_product_list.adapter = adapter
-    }
-
-    private fun subscribeToLiveData() {
-        viewModel.data.observe(viewLifecycleOwner, androidx.lifecycle.Observer {
-            adapter.addItems(it)
-        })
     }
 
     private fun addItemAction() {
@@ -109,7 +112,7 @@ class ProductListFragment : Fragment(), ClickListener {
         addItem(nameEditText, priceEditText, costPriceEdiText, numberEditText, dialog)
     }
 
-    fun addItem(
+    private fun addItem(
         nameEditText: EditText, priceEditText: EditText,
         costPriceEdiText: EditText, numberEditText: EditText, dialog: AlertDialog
     ) {
@@ -173,7 +176,8 @@ class ProductListFragment : Fragment(), ClickListener {
     override fun onItemClick(item: Product) {
         val intent = Intent(requireContext(), DetailProductActivity::class.java)
         intent.putExtra(product_detail, item)
-        startActivity(intent)
+        startActivity(intent, ActivityOptions
+            .makeSceneTransitionAnimation(activity).toBundle())
     }
 
     override fun onLongItemClick(item: Product) {

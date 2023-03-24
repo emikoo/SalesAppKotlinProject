@@ -11,7 +11,7 @@ import kotlinx.coroutines.launch
 class ProductViewModel(private val repository: ProductRepositoryImpl) : ViewModel() {
 
     val data: MutableLiveData<MutableList<Product>> = MutableLiveData()
-    val message: MutableLiveData<String>? = MutableLiveData()
+    val message: MutableLiveData<String> = MutableLiveData()
     var products: MutableList<Product>? = mutableListOf()
     var filteredProducts: MutableList<Product> = mutableListOf()
 
